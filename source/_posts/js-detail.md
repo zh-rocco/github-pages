@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 细看 JavaScript
+title: 细说 JavaScript
 author: Simple
 tags:
   - JavaScript
