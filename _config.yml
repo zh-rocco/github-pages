@@ -59,6 +59,7 @@ theme: landscape
 # Deployment
 deploy:
   type: git
-  repo: git@github.com:no-nothing/no-nothing.github.io.git
-  ## repo: https://git.coding.net/know-nothing/know-nothing.coding.me.git
+  repo:
+    github: git@github.com:no-nothing/no-nothing.github.io.git
+    coding: https://git.coding.net/know-nothing/know-nothing.coding.me.git
   branch: master
