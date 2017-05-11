@@ -68,15 +68,14 @@ $logo-text
 
 $nav-link
   float: left
-  color: #fff
-  opacity: 0.6
+  color: #eee
   text-decoration: none
-  text-shadow: 0 1px rgba(0, 0, 0, 0.2)
-  transition: opacity 0.2s
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.2)
+  transition: color 0.2s
   display: block
   padding: 20px 15px
   &:hover
-    opacity: 1
+    color: #fff
 
 .nav-icon
   @extend $nav-link
@@ -91,7 +90,7 @@ $nav-link
 
 .main-nav-link
   @extend $nav-link
-  font-weight: 300
+  font-weight: normal
   letter-spacing: 1px
   @media mq-mobile
     display: none
@@ -114,6 +113,11 @@ $nav-link
 #nav-search-btn
   &:before
     content: "\f002"
+
+#nav-github-btn
+  &:before
+    content: "\f09b"
+    color: #fff
 
 #search-form-wrap
   position: absolute
