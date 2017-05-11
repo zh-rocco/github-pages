@@ -1,10 +1,9 @@
 ---
 layout: post
-title: CSS Note
+title: CSS 笔记
 author: Simple
 tags:
-  - 常用CSS属性
-  - 记不住的CSS属性
+  -
 categories:
   - CSS
 comments: true

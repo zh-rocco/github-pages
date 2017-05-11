@@ -3,7 +3,6 @@ layout: post
 title: 解决移动端 300ms 延迟
 author: Simple
 tags:
-  - JavaScript
   - mobile
 categories:
   - JavaScript

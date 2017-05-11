@@ -3,8 +3,7 @@ layout: post
 title: ECMAScript 6 入门
 author: Simple
 tags:
-  - JavaScript
-  - ES6
+  - es6
 categories:
   - JavaScript
 comments: true

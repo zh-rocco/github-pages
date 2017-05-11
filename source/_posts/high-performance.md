@@ -3,7 +3,6 @@ layout: post
 title: JavaScript 性能优化
 author: Simple
 tags:
-  - JavaScript
   - performance
 categories:
   - JavaScript

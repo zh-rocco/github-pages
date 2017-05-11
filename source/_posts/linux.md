@@ -3,8 +3,7 @@ layout: post
 title: Linux 基础与常用命令
 author: Simple
 tags:
-  - Shell
-  - 常用命令
+  - shell
 categories:
   - Linux
 comments: true

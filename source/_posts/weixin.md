@@ -4,7 +4,7 @@ title: 微信开发笔记
 author: Simple
 tags:
 categories:
-  - 微信
+  - WeiXin
 comments: true
 date: 2017-05-10 16:06:00
 

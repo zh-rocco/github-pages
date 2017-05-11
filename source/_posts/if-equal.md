@@ -3,7 +3,7 @@ layout: post
 title: JS 中的相等性判断
 author: Simple
 tags:
-  - JavaScript
+  -
 categories:
   - JavaScript
 comments: true

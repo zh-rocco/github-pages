@@ -3,7 +3,6 @@ layout: post
 title: meta 标签设置
 author: Simple
 tags:
-  - HTML
   - meta
 categories:
   - HTML

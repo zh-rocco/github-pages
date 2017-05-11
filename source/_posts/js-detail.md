@@ -3,7 +3,7 @@ layout: post
 title: 细说 JavaScript
 author: Simple
 tags:
-  - JavaScript
+  -
 categories:
   - JavaScript
 comments: true
