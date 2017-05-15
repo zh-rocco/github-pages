@@ -3,7 +3,6 @@ layout: post
 title: systemd/systemctl 常用命令
 author: Simple
 tags:
-  - systemd
   - systemctl
 categories:
   - Linux
