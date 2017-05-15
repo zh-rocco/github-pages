@@ -15,7 +15,7 @@ date: 2017-05-15 09:30:00
 
 ## 安装
 
-```shell
+``` bash
 # 查看版本
 firewall-cmd --version
 
@@ -25,9 +25,11 @@ firewall-cmd --version
 yum install firewalld firewall-config
 ```
 
+<!-- more -->
+
 ## 基本命令
 
-```shell
+``` bash
 # 获取 firewalld 状态
 firewall-cmd --state
 
@@ -38,11 +40,9 @@ firewall-cmd --list-ports
 firewall-cmd --zone=public --list-ports
 ```
 
-<!-- more -->
-
 ## 开启/关闭指定端口
 
-```shell
+``` bash
 # 启动 firewalld
 systemctl start firewalld.service
 

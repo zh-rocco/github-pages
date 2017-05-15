@@ -30,7 +30,7 @@ date: 2017-05-10 18:50:00
 
 ## 文字抗锯齿
 
-```css
+``` css
 text-rendering: optimizeLegibility;
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
@@ -43,7 +43,7 @@ text-rendering: optimizeLegibility;
 
 1\. 设置父元素 `font-size: 0`;
 
-```css
+``` css
 ul {
     list-style: none;
     font-size: 0;
@@ -56,7 +56,7 @@ ul li {
 
 2\. 让当前元素 `float: left;`
 
-```css
+``` css
 ul {
     list-style: none;
 }
@@ -67,7 +67,7 @@ ul li {
 
 3.\ 设置父元素 `display: flex;`
 
-```css
+``` css
 ul {
     list-style: none;
     display: flex;
@@ -82,7 +82,7 @@ ul li {
 
 ## 媒体查询
 
-```css
+``` css
 body {
   background-color: grey;
 }
@@ -120,7 +120,7 @@ IE9 之前的 Internet Explorer 版本均不支持双冒号。
 
 ## 解决老版本 `IE(<9)` 不支持 `HTML5` 标签
 
-```html
+``` html
 <!--[if lt IE 9]>
 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
@@ -180,7 +180,7 @@ IE9 之前的 Internet Explorer 版本均不支持双冒号。
 其中有表单的 `select`, `textarea` 和 `input` 元素。
 不过，可以强制它们继承父元素的字体设置，代码为：
 
-```css
+``` css
 input, select, textarea {
   font-family: inherit;
 }
@@ -216,7 +216,7 @@ input, select, textarea {
 
 #### `type="select"`
 
-```html
+``` html
 <label for="state">State:</label>
 <select id="state" name="state">
   <option value="AL">Alabama</option>
@@ -278,7 +278,7 @@ input, select, textarea {
 
 显示一段文本的缩略，剩余的用 "..." 表示：
 
-```css
+``` css
 white-space: nowrap;   //强制单行显示
 overflow: hidden;   //多余隐藏
 text-overflow: ellipsis;   //出现省略号

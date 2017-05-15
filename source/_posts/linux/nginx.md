@@ -15,7 +15,7 @@ date: 2017-05-13 22:50:00
 
 ## 安装
 
-```shell
+``` bash
 # 安装
 yum install nginx
 
@@ -27,7 +27,7 @@ nginx -v
 
 ## 编辑配置文件
 
-```shell
+``` bash
 # 安装 lrzsz(Xshell环境下用于文件上传和下载)，如已安装请忽略
 yum install lrzsz
 

@@ -25,7 +25,7 @@ JavaScript 提供三种不同的比较操作符：
 2. 浮点数 `0` 不分正负，全等操作符认为 `+0` 和 `-0` 全等。
 3. 全等操作符认为 `NaN` 与其他任何值都不全等，包括它自己。（等式 `(x !== x)` 成立的唯一情况是 `x` 的值为 `NaN`）
 
-```javascript
+``` javascript
 console.log(-0 === +0); //true
 console.log(-1 === +1); //false
 console.log(NaN === NaN); //false
@@ -40,7 +40,7 @@ console.log(undefined === undefined); //true
 2. 在转换后（等式的一边或两边都可能被转换），最终的比较方式等同于全等操作符 `===` 的比较方式。
 3. 相等操作符满足交换律。
 
-```javascript
+``` javascript
 console.log(2 == true); //false
 console.log('2' == true); //false
 console.log(2 == false); //false
@@ -58,7 +58,7 @@ console.log(0 == false); //true
 
 > 返回一个布尔值，表明传入的两个值是否是同一个值。
 
-```javascript
+``` javascript
 Object.is([], []); //false
 Object.is(-0, +0); //false
 Object.is(NaN, NaN); //true
@@ -74,7 +74,7 @@ Object.is(NaN, NaN); //true
 
 奇特的 `++[[]][+[]]+[+[]]` ：
 
-```javascript
+``` javascript
 let c = ++[[]][+[]]+[+[]];
 console.log(c); //10
 ```
@@ -87,7 +87,7 @@ console.log(c); //10
 
 1. 先把 `++[[]][+[]]+[+[]]` 分解一下：
 
-```javascript
+``` javascript
 ++[[]][+[]]
 +
 [+[]]
@@ -95,13 +95,13 @@ console.log(c); //10
 
 2. 在 JS 里，`+` 可以把其他类型转化成 `number`，这里可以把空数组转化成 0：
 
-```javascript
+``` javascript
 console.log( +[] === 0 ); //true
 ```
 
 所以 `++[[]][+[]]+[+[]]` 变成：
 
-```javascript
+``` javascript
 ++[[]][0]
 +
 [0]
@@ -109,7 +109,7 @@ console.log( +[] === 0 ); //true
 
 3. `[[]][0]` 表示从 `[[]]` 中取出第一个元素，所以：
 
-```javascript
+``` javascript
 ++[]
 +
 [0]
@@ -117,7 +117,7 @@ console.log( +[] === 0 ); //true
 
 4. '2' 里说过 **`+` 可以把其他类型转化成 `number`**，`++` 也可以把其他类型转化成 `number`，并且再增加 1：
 
-```javascript
+``` javascript
 1
 +
 [0]
@@ -125,13 +125,13 @@ console.log( +[] === 0 ); //true
 
 5. 在 JS 中 `[0] == '0'` 是真：
 
-```javascript
+``` javascript
 console.log([0] == '0'); //true
 ```
 
 所以：
 
-```javascript
+``` javascript
 1
 +
 '0'

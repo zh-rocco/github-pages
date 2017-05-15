@@ -14,13 +14,13 @@ date: 2017-05-10 16:06:00
 
 #### 1. iOS
 
-```html
+``` html
 Mozilla/5.0 (iPhone; CPU iPhone OS 10_2_1 like Mac OS X) AppleWebKit/602.4.6 (KHTML, like Gecko) Mobile/14D27 MicroMessenger/6.5.7 NetType/WIFI Language/zh_CN
 ```
 
 #### 2. Android
 
-```html
+``` html
 Mozilla/5.0 (Linux; Android 7.0; SM-G9300 Build/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/53.0.2785.49 Mobile MQQBrowser/6.2 TBS/043220 Safari/537.36 MicroMessenger/6.5.7.1041 NetType/WIFI Language/zh_CN
 ```
 
@@ -42,7 +42,7 @@ Mozilla/5.0 (Linux; Android 7.0; SM-G9300 Build/NRD90M; wv) AppleWebKit/537.36 (
 
 微信UA:
 
-```html
+``` html
 Mozilla/5.0 (iPhone; CPU iPhone OS 10_2_1 like Mac OS X) AppleWebKit/602.4.6 (KHTML, like Gecko) Mobile/14D27 MicroMessenger/6.5.7 NetType/WIFI Language/zh_CN
 ```
 
@@ -57,6 +57,6 @@ Mozilla/5.0 (iPhone; CPU iPhone OS 10_2_1 like Mac OS X) AppleWebKit/602.4.6 (KH
 
 微信UA:
 
-```html
+``` html
 Mozilla/5.0 (iPhone; CPU iPhone OS 10_2_1 like Mac OS X) AppleWebKit/602.4.6 (KHTML, like Gecko) Mobile/14D27 MicroMessenger/6.5.7 NetType/WIFI Language/zh_CN
 ```

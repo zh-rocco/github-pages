@@ -14,7 +14,7 @@ date: 2017-05-02 11:50:00
 ### 1. 避免全局查找
 在一个函数中会用到全局对象存储为局部变量来减少全局查找，因为访问局部变量的速度要比访问全局变量的速度更快些
 
-``` js
+``` javascript
 function search() {
     //当我要使用当前页面地址和主机域名
     alert(window.location.href + window.location.host);
@@ -31,7 +31,7 @@ function search() {
 ### 2. 字符串连接
 在一个函数中会用到全局对象存储为局部变量来减少全局查找，因为访问局部变量的速度要比访问全局变量的速度更快些
 
-``` js
+``` javascript
 /* 1 */
 //如果要连接多个字符串，应该少使用 +=，如
 s += a;
@@ -54,7 +54,7 @@ var all = buf.join("");
 ### 3. 避免 with 语句
 和函数类似，with语句会创建自己的作用域，因此会增加其中执行的代码的作用域链的长度，由于额外的作用域链的查找，在with语句中执行的代码肯定会比外面执行的代码要慢，**在能不使用with语句的时候尽量不要使用with语句。**
 
-``` js
+``` javascript
 with(a.b.c.d) {
     property1 = 1;
     property2 = 2;
@@ -74,7 +74,7 @@ obj.property2 = 2;
 
 
 ### 5. 使用直接量
-``` js
+``` javascript
 // 不要 var aTest = new Array(); //替换为：
 var aTest = [];
 
@@ -96,7 +96,7 @@ var oFruit = {color: "red", name: "apple"};
 ### 6. 使用 DocumentFragment 优化多次 append
 一旦需要更新DOM，请考虑使用文档碎片来构建DOM结构，然后再将其添加到现存的文档中。
 
-``` js
+``` javascript
 for (var i = 0; i < 1000; i++) {
     var el = document.createElement('p');
     el.innerHTML = i;
@@ -116,7 +116,7 @@ document.body.appendChild(frag);
 ### 7. 使用一次 innerHTML 赋值代替构建DOM元素
 对于大的DOM更改，使用innerHTML要比使用标准的DOM方法创建同样的DOM结构更快，但差别并不大。
 
-``` js
+``` javascript
 var frag = document.createDocumentFragment();
 for (var i = 0; i < 1000; i++) {
     var el = document.createElement('p');
@@ -136,7 +136,7 @@ document.body.innerHTML = html.join('');
 ### 8. 通过模板元素 clone 替代 createElement
 使用 `cloneNode()` 可以减少属性的设置次数——同样如果需要创建很多元素，应该先准备一个样板节点。大多数浏览器中，克隆节点更有效率，但提高不多
 
-``` js
+``` javascript
 var frag = document.createDocumentFragment();
 for (var i = 0; i < 1000; i++) {
     var el = document.createElement('p');
@@ -159,7 +159,7 @@ document.body.appendChild(frag);
 ### 9. 使用 firstChild 和 nextSibling 代替 childNodes 遍历DOM元素
 老IE中，`nextSibling` 的效率更高，其他情况下，没太多差别
 
-``` js
+``` javascript
 var nodes = element.childNodes;
 for (var i = 0, l = nodes.length; i < l; i++) {
     var node = nodes[i];
@@ -182,7 +182,7 @@ while (node) {
 ### 11. 重复使用的调用结果，事先保存到局部变量
 使用 `cloneNode()` 可以减少属性的设置次数——同样如果需要创建很多元素，应该先准备一个样板节点。大多数浏览器中，克隆节点更有效率，但提高不多
 
-``` js
+``` javascript
 //避免多次取值的调用开销
 var h1 = element1.clientHeight + num1;
 var h2 = element1.clientHeight + num2;
@@ -203,7 +203,7 @@ var h2 = eleHeight + num2;
 4\. 使用后测试循环：循环中 `for(var elem in ...)` 的效率极差，尽量少用。`while` 循环的效率要优于 `for` 循环，`for` 循环和 `while` 循环都是前测试循环，而如 `do-while` 这种后测试循环，可以避免最初终止条件的计算，因此运行更快；
 
 5\. 使用查表法替代循环：
-``` js
+``` javascript
 var results = [result0, result1, result2, result3, result4, result5, result6, result7, result8, result9, result10];
 return results[value];
 ```
@@ -213,7 +213,7 @@ return results[value];
 1\. 尽量少使用 `eval` 函数：使用 `eval` 相当于在运行时再次调用解释引擎对内容进行运行，需要消耗大量时间，而且使用 `eval` 带来的安全性问题也是不容忽视的。
 
 2\. 不要使用Function构造器：不要给 `setTimeout` 或者 `setInterval` 传递字符串参数。
-``` js
+``` javascript
 var num = 0;
 setTimeout('num++', 10);
 //可以替换为：
@@ -226,7 +226,7 @@ setTimeout(addNum, 10);
 
 
 ### 14. 缩短否定检测
-``` js
+``` javascript
 if (oTest != '#ff0000') {
     //do something
 }
@@ -249,7 +249,7 @@ if (!oTest) {
 2\. 条件分支多(>2)时，使用 `switch` 优于 `if`：`switch` 分支选择的效率高于 `if`，在IE下尤为明显。4分支的测试，IE下 `switch` 的执行时间约为 `if` 的一半；
 
 3\. 使用三目运算符替代条件分支：
-``` js
+``` javascript
 if (a > b) {
     num = a;
 } else {
@@ -279,7 +279,7 @@ num = a > b ? a : b;
 
 
 ### 18. 避免全局变量
-``` js
+``` javascript
 myNameSpace = function () {
     var current = null;
 
@@ -309,7 +309,7 @@ myNameSpace = function () {
 ### 19. 循环引用 ？
 如果循环引用中包含DOM对象或者ActiveX对象，那么就会发生内存泄露。
 
-``` js
+``` javascript
 function init() {
     var el = document.getElementById('MyElement');
     el.onclick = function () {
@@ -324,7 +324,7 @@ init();
 **解决方案：**
 
 1\. 置空DOM对象：将 `el` 置空，`context` 中不包含对DOM对象的引用，从而打断循环应用：
-``` js
+``` javascript
 function init() {
     var el = document.getElementById('MyElement');
     el.onclick = function () {
@@ -340,7 +340,7 @@ init();
 ```
 
 2\. 构造新的 `context`：把 `function` 抽到新的 `context` 中，这样，`function` 的 `context` 就不包含对 `el` 的引用，从而打断循环引用：
-``` js
+``` javascript
 function elClickHandler() {
     //……
 }
@@ -379,7 +379,7 @@ init();
 ### 22. == 和 === 的区别
 `==` 和 `!=` 操作符会进行类型强制转换。
 
-``` js
+``` javascript
 var valueA = "1";
 var valueB = 1;
 if (valueA == valueB) {
@@ -423,7 +423,7 @@ if (valueA === valueB) {
 
 3\. 巧用 `||` 和 `&&` 布尔运算符；
 
-``` js
+``` javascript
 function eventHandler(e) {
     if (!e) e = window.event;
 }

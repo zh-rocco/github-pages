@@ -18,7 +18,7 @@ date: 2017-05-02 11:50:00
 ECMAScript 很早就支持十六进制字面量（通过在字面量中添加 `0x` 作为前缀来表示）。
 在 ES6 中，可以通过在字面量中分别添加 `0b` 或 `0o` 作为前缀来表达二进制和八进制字面量。
 
-```javascript
+``` javascript
 const num = {
     dec: 15, //10进制
     hex: 0xF, //16进制
@@ -40,7 +40,7 @@ ES6 引入了 **重音符** 字符串字面量（backtick string literal）。
 
 > 重音符通常隐藏在美式键盘的左上角，位于 ESC 下方。
 
-```javascript
+``` javascript
 let character = {
         firstName: 'Snow',
         lastName: 'Jon',
@@ -59,7 +59,7 @@ console.log(message); //The character 'Snow Jon' is 20 years old.
 建议将 `var` 替换为 `let`，`let` 不可以重新声明；`var` 声明的变量作用域为包围它的函数，而 `let` 声明的变量作用域仅在它所在的块中。
 除此之外，`let` 的操作与 `var` 完全相同：
 
-```javascript
+``` javascript
 var msg = "Howdy";
 var msg = "Hello there"; //acceptable, just reassigns
 
@@ -71,14 +71,14 @@ let message = `This is another message.`; //ERROR!
 
 使用 `const` 声明的变量绝对不能修改：
 
-```javascript
+``` javascript
 const message = `This is your message.`;
 message = `This is your second message.`; //ERROR
 ```
 
 尽管使用 `const` 声明的变量不能更改其值，但该变量指向的 object 不是常量，所以它仍是可修改的：
 
-```javascript
+``` javascript
 const person = {
         name: 'Jon',
         age: 20
@@ -91,7 +91,7 @@ person.age = 18; //person.age -> 18
 
 ### 4. 代码块范围
 
-```javascript
+``` javascript
 for (var p = 0; p < 5; p++) {
     setTimeout(function () {
         console.log(p); //55555
@@ -108,7 +108,7 @@ for (let q = 0; q < 5; q++) {
 
 *解构赋值*（destructuring assignment）允许从一个 **对象或数组** 向多个变量赋值：
 
-```javascript
+``` javascript
 let names = ["Ted", "Jenni", "Athen"];
 let [a, b, c] = names;
 console.log(a); //Ted
@@ -121,7 +121,7 @@ console.log(a, b, c); //Ted Jenni Athen
 
 对象也可以执行类似的解构类型：
 
-```javascript
+``` javascript
 let point = {x: 2, y: 5};
 let {y, x} = point;
 console.log(x, y); //console: 2 5
@@ -138,7 +138,7 @@ console.log(x, y); //console: 2 5
 
 #### 默认参数：
 
-```javascript
+``` javascript
 /* Before */
 var sayHello = function(message) {
   if (message === undefined) {
@@ -163,7 +163,7 @@ sayHello('Hello'); //Hello
 
 在过去，可以通过访问静默构建并传递给每个函数调用的内置 `arguments` 参数来实现此目的：
 
-```javascript
+``` javascript
 /* Before */
 function greet(name) {
     var args = Array.prototype.slice.call(arguments, greet.length);
@@ -205,7 +205,7 @@ greet('Jon', 'is', 'a', 'POV');
 剩余参数将会收集传入某个给定调用的一些可选值，展开运算符获取一个值数组并 “展开” 它们，
 基本上讲，就是解构它们以用作被调用的函数的各个参数。
 
-```javascript
+``` javascript
 /* 使用展开运算符进行串联 */
 let arr1 = [0, 1, 2];
 let arr2 = [...arr1, 3, 4, 5];
@@ -230,7 +230,7 @@ printPerson(...args); //Jon Snow 20
 
 从 ES6 开始，可以使用所谓的粗箭头（与细箭头相对）创建函数字面量，就像这样：
 
-```javascript
+``` javascript
 /* Before */
 let names = ['Jon', 'Arya', 'Brandon'];
 names.forEach((n) => console.log(n));
@@ -244,7 +244,7 @@ names.forEach((n) => console.log(n));
 有零或多个参数时，必须使用括号 ()。
 如果只有一个参数，可以选择省略括号：
 
-```javascript
+``` javascript
 names.forEach(n => console.log(n));
 ```
 
@@ -252,7 +252,7 @@ names.forEach(n => console.log(n));
 
 #### 词法 this：
 
-```javascript
+``` javascript
 let bob = {
     firstName: 'Snow',
     lastName: 'Jon',
@@ -270,7 +270,7 @@ bob.displayMe();
 
 当在一个存在于全局范围的函数中引用 `this` 时，情况会变得有点怪异：
 
-```javascript
+``` javascript
 let displayThis = function () {
     for (let m in this) {
         console.log(m);
@@ -282,7 +282,7 @@ displayThis();
 当在全局范围内的函数使用时，`this` 引用全局范围对象，在上面的情况中，打印出全局范围的每个成员，
 包括顶级全局变量、函数和对象（比如上面的示例中的 `console`）。
 
-```javascript
+``` javascript
 let displayThis = function () {
     for (let m in this) {
         console.log(m);
@@ -304,7 +304,7 @@ bob.displayMe(); // this == bob
 
 #### 生成器函数：
 
-```javascript
+``` javascript
 /* 一个使用生成器的有限值流 */
 function* getName() {
     yield "Ted";
@@ -328,7 +328,7 @@ console.log(names.next().value); //undefined
 
 #### for-of 关键字：
 
-```javascript
+``` javascript
 function* fibonacci() { //a generator function
         yield 0;
         yield 1;
@@ -365,7 +365,7 @@ ECMAScript 技术委员会曾经试图将面向对象的元素集成到 JavaScri
 
 ### 2. 类定义
 
-```javascript
+``` javascript
 /* 构造类实例 */
 class Person {
     constructor(firstName, lastName, age) {
@@ -381,7 +381,7 @@ console.log(ted); //An object
 
 ### 3. 属性和封装
 
-```javascript
+``` javascript
 /* 定义属性 */
 class Person {
     constructor(firstName, lastName, age) {
@@ -438,7 +438,7 @@ for (let m in ted) {
 
 ### 4. 原型继承
 
-```javascript
+``` javascript
 /* 原型继承 */
 class Person {
     //... as before
@@ -471,7 +471,7 @@ mark.writeArticle(); //Mark just wrote an article on Architecture
 
 ### 1. 模块
 
-```javascript
+``` javascript
 /* 导出 output 函数 */
 //output.js
 export function output() {
@@ -481,7 +481,7 @@ export function output() {
 
 在函数前输入关键字 export，这会告诉 ECMAScript 需要将此文件作为模块对待。因此，该函数将可供其他任何导入它的文件使用：
 
-```javascript
+``` javascript
 /* 导入 output.js */
 import {out} from 'output.js';
 out("I'm using output!");
@@ -491,7 +491,7 @@ out("I'm using output!");
 
 > 推荐使用上面的具名导入 `import {out} from 'output.js';`，
 
-```javascript
+``` javascript
 /* 使用通配符导出 */
 import * as Output from 'output.js';
 Output.out("I'm using output!");
@@ -503,7 +503,7 @@ Output.out("I'm using output!");
 
 如果你需要隐藏一些字段，可以先让它们可通过 `Symbol` 名称访问，而不是通过之前的标准字符串进行访问：
 
-```javascript
+``` javascript
 class Person {
     constructor(firstName, lastName, age) {
         this[firstNameS] = firstName;
@@ -530,7 +530,7 @@ console.log(p[firstNameS]); //"Fred"
 
 Symbol 的主要功能是帮助程序员避免库之间的名称冲突：
 
-```javascript
+``` javascript
 let fibonacci = {
     [Symbol.iterator]: function*() {
         let pre = 0, cur = 1;
@@ -566,7 +566,7 @@ Map 是一组 **名称/值对**，与 ECMAScript 对象非常相似。不同之�
 
 另外，像 Array 一样，Map 包含受函数语言启发的方法，比如 `forEach()` 在 Map 自身上运行。
 
-```javascript
+``` javascript
 let m = new Map();
 m.set("key1", "value1");
 m.set("key2", "value2");
@@ -585,7 +585,7 @@ console.log(m.values());
 
 Set 看起来更像传统的对象集合，因为对象可简单地添加到集合中。但 Set 会依次检查每个对象，以确保它们未与集合中已存在的值重复：
 
-```javascript
+``` javascript
 let s = new Set();
 s.add("Ted");
 s.add("Jenni");

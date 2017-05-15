@@ -15,7 +15,7 @@ date: 2017-05-02 22:50:00
 
 执行 `var obj = new Base();` 时相当于做了以下三件事：
 
-``` js
+``` javascript
 var obj = {};
 obj.__proto__ = Base.prototype;
 Base.call(obj);
@@ -54,7 +54,7 @@ Javascript中的对象实例本质上是由一系列的属性组成的，在这�
 
 ### 4. 原型模式的执行流程
 
-1. 先查找构造函数实例里的属性或方法，如果有，就立即返回。  
+1. 先查找构造函数实例里的属性或方法，如果有，就立即返回。
 2. 如果构造函数的实例没有，就去它的原型对象里找，如果有，就立即返回
 
 **总结：**
@@ -93,7 +93,7 @@ Javascript中的对象实例本质上是由一系列的属性组成的，在这�
 
 1\. 让一个变量长期驻扎在内存中，局部变量的累加。
 
-``` js
+``` javascript
 function outer(){
     var x=10;
     return function(){ //函数嵌套函数
@@ -108,7 +108,7 @@ y(); //y函数调用第二次，结果为12，实现了累加
 
 2\. 模块化代码，减少全局变量的污染。
 
-``` js
+``` javascript
 var abc = (function(){ //abc为外部匿名函数的返回值
     var a = 1;
     return function(){
@@ -122,7 +122,7 @@ abc(); //3
 
 3\. 私有成员的存在。
 
-``` js
+``` javascript
 var aaa = (function(){
     var a = 1;
     function bbb(){
@@ -150,7 +150,7 @@ aaa.c(); //3
 
 内存泄露问题，由于IE的JS对象和DOM对象使用不同的垃圾收集方法，因此闭包在IE中会导致内存泄露问题，也就是无法销毁驻留在内存中的元素。
 
-``` js
+``` javascript
 function closure(){
     var oDiv = document.getElementById('oDiv'); //oDiv用完之后一直驻留在内存中
     oDiv.onclick = function () {
