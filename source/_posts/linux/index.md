@@ -8,7 +8,6 @@ tags:
 categories:
   - Linux
 comments: true
-description: Linux 常用命令，文件操作命令，服务管理
 date: 2017-05-13 10:50:00
 
 ---

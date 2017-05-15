@@ -58,7 +58,14 @@ systemctl disable firewalld.service
 # firewalld 默认会关闭所有端口访问
 
 # 开启 80 端口(此时只有 80 端口可以访问)
+# --permanent 永久
 firewall-cmd --zone=public --add-port=80/tcp --permanent
+
+# 启用https服务
+firewall-cmd --permanent --zone=public --add-service=https
+
+# 开启 443 端口(https)
+firewall-cmd --zone=public --add-port=443/tcp --permanent
 
 # 重新加载防火墙，生效新添的规则
 firewall-cmd --reload

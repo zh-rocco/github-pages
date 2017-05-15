@@ -28,7 +28,7 @@ nginx -v
 ## 编辑配置文件
 
 ``` bash
-# 安装 lrzsz(Xshell环境下用于文件上传和下载)，如已安装请忽略
+# 安装 lrzsz (Xshell环境下用于文件上传和下载)，如已安装请忽略
 yum install lrzsz
 
 # 切换到 nginx 配置文件目录
