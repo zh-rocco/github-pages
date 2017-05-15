@@ -3,7 +3,7 @@ title: Simple's blog
 subtitle: 简简简简单
 description: Simple's blog. 网页性能优化, Vue踩坑之路, 你不知道的JavaScript, 前端书签大全.
 author: no-nothing
-language: zh-cn
+language: zh-CN
 timezone: Asia/Shanghai
 
 # URL
@@ -54,7 +54,7 @@ per_page: 10
 pagination_dir: page
 
 # Extensions
-theme: even
+theme: landscape
 
 # Deployment
 deploy:
