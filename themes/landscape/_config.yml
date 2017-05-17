@@ -2,7 +2,7 @@
 menu:
   首页: /
   归档: /archives
-# rss: /atom.xml
+  聚合: /atom.xml
 
 # Content
 excerpt_link: 查看更多
@@ -17,6 +17,10 @@ widgets:
 # - archive
 - recent_posts
 - friends
+
+friends:
+  叶丹波: http://www.yedanbo.com/
+  Kelo: https://kongwz.github.io
 
 # display widgets at the bottom of index pages (pagination == 2)
 index_widgets:

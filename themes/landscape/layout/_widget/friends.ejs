@@ -1,9 +1,12 @@
 <div class="widget-wrap">
-    <h3 class="widget-title"><%= __('friends') %></h3>
-    <div class="widget">
-        <ul>
-            <li><a href="http://yedanbo.com/" target="_blank" rel="nofollow">叶丹波</a></li>
-            <li><a href="https://kongwz.github.io/" target="_blank" rel="nofollow">Kelo</a></li>
-        </ul>
-    </div>
+  <h3 class="widget-title"><%= __('friends') %></h3>
+  <div class="widget">
+    <ul>
+      <% for (var i in theme.friends){ %>
+      <li>
+        <a href="<%- url_for(theme.friends[i]) %>" target="_blank" rel="nofollow"><%= i %></a>
+      </li>
+      <% } %>
+    </ul>
+  </div>
 </div>

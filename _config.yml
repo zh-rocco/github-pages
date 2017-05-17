@@ -1,7 +1,7 @@
 # Site
-title: Simple's blog
-subtitle: 简简简简单
-description: Simple's blog. 网页性能优化, Vue踩坑之路, 你不知道的JavaScript, 前端书签大全.
+title: 简简简简单
+subtitle:
+description: 前端笔记,网页性能优化
 author: no-nothing
 language: zh-CN
 timezone: Asia/Shanghai
@@ -62,4 +62,5 @@ deploy:
   repo:
     github: git@github.com:no-nothing/no-nothing.github.io.git
     coding: https://git.coding.net/know-nothing/know-nothing.coding.me.git
+    qcloud: git@119.29.107.78:/home/git/blog.git
   branch: master
