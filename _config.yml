@@ -1,13 +1,13 @@
 # Site
-title: 简简简简单
-subtitle:
+title: Simple's blog
+subtitle: 简简简简单
 description: 前端笔记,网页性能优化
 author: no-nothing
 language: zh-CN
 timezone: Asia/Shanghai
 
 # URL
-url: https://no-nothing.github.io
+url: https://www.singple.com
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -34,7 +34,7 @@ post_asset_folder: false
 relative_link: false
 future: true
 highlight:
-  enable: true
+  enable: false
   line_number: true
   auto_detect: false
   tab_replace:
@@ -62,5 +62,5 @@ deploy:
   repo:
     github: git@github.com:no-nothing/no-nothing.github.io.git
     coding: https://git.coding.net/know-nothing/know-nothing.coding.me.git
-    qcloud: git@119.29.107.78:/home/git/blog.git
+    # qcloud: git@119.29.107.78:/home/git/blog.git
   branch: master
