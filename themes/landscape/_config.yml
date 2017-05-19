@@ -4,6 +4,8 @@ menu:
   归档: /archives
   聚合: /atom.xml
 
+rss: /atom.xml
+
 # Content
 excerpt_link: 查看更多
 fancybox: false

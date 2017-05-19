@@ -1,20 +1,20 @@
 {
-  "name": "Simple Blog",
-  "short_name": "Simple Blog",
+  "name": "Simple's Blog",
+  "short_name": "Simple",
   "description": "An front-end engineer who loves and pursues simple.",
   "icons": [
     {
-      "src": "images/icons/icon-64.png",
+      "src": "/images/icons/icon-64.png",
       "sizes": "64x64",
       "type": "image/png"
     },
     {
-      "src": "images/icons/icon-128.png",
+      "src": "/images/icons/icon-128.png",
       "sizes": "128x128",
       "type": "image/png"
     },
     {
-      "src": "images/icons/icon-256.png",
+      "src": "/images/icons/icon-256.png",
       "sizes": "256x256",
       "type": "image/png"
     }
