@@ -1,16 +1,20 @@
 ---
 layout: post
-title: 服务器配置
+title: 服务器配置 - 简易版
 author: Simple
 tags:
+  - lrzsz
+  - openssl
   - nginx
   - https
+  - systemctl
   - firewall
+  - pm2
 categories:
   - Linux
 comments: true
-date: 2017-05-21 00:10:00
-updated: 2017-05-21 00:10:00
+date: 2017-05-23 00:10:00
+updated: 2017-05-23 00:10:00
 
 ---
 
@@ -39,114 +43,40 @@ yum upgrade
 
 ## 安装必备软件
 
-### 配置编译环境
-
-``` bash
-# 安装 make
-yum -y install gcc automake autoconf libtool make
-
-# 安装 g++
-yum -y install gcc gcc-c++
-```
-
 ### 安装 lrzsz（Xshell 环境下用于文件上传和下载）
 
 ``` bash
-yum -y install lrzsz
+yum install lrzsz
 ```
 
-### 选择源码安装目录
-
-可以是任何目录，我选择的是 `/usr/local/src`。
-
-``` bash
-cd /usr/local/src
-```
-
-### 更新 SSL（OpenSSL）
+### 安装 OpenSSL
 
 ``` bash
 # 查看已安装的 SSL 版本
 openssl version
 
-# 如果显示 openssl 版本低于 1.02，则需要更新（为了后续开启 http2）
-# 切换到源码安装目录
-cd /usr/local/src
-
-# 下载源码包
-wget http://www.openssl.org/source/openssl-1.1.0e.tar.gz
-
-# 解压
-tar -zxvf openssl-1.1.0e.tar.gz
-
-# 切换到源码目录内
-cd openssl-1.1.0e
-
-# 添加配置
-./config --prefix=/usr/local/openssl
-
-# 安装
-make && make install
-
-# 保存老版本的 openssl
-mv /usr/bin/openssl /usr/bin/openssl.OFF
-mv /usr/include/openssl /usr/include/openssl.OFF
-
-# 创建软链
-ln -s /usr/local/openssl/bin/openssl /usr/bin/openssl
-ln -s /usr/local/openssl/include/openssl /usr/include/openssl
-echo "/usr/local/openssl/lib">>/etc/ld.so.conf
-
-# 检查是否安装成功
-openssl version
+# 若提示 command not found，安装 openssl
+yum install openssl openssl-devel
 ```
-
-**参考：**
-1. [CentOS之——升级openssl为最新版](http://blog.csdn.net/l1028386804/article/details/53165252)
 
 ### 安装 Nginx
 
 ``` bash
-# 切换到源码安装目录
-cd /usr/local/src
+# 安装 Nginx
+yum install nginx
 
-# 下载源码包
-wget http://nginx.org/download/nginx-1.12.0.tar.gz
-wget http://www.openssl.org/source/openssl-1.1.0e.tar.gz
-wget http://zlib.net/zlib-1.2.11.tar.gz
+# 查看 Nginx 版本
+nginx -V
 
-# 解压
-tar -zxvf nginx-1.12.0.tar.gz
-tar -zxvf openssl-1.1.0e.tar.gz
-tar -zxvf zlib-1.2.11.tar.gz
-
-# 添加配置
-# --prefix=/usr/local/nginx --> 指定安装路径
-# --conf-path=/etc/nginx/nginx.conf --> 指定配置文件的位置
-# --with-http_ssl_module --> 启用 SSL 模块
-# --with-http_v2_module --> 启用 http2 模块
-./configure --prefix=/usr/local/nginx --conf-path=/etc/nginx/nginx.conf --with-openssl=../openssl-1.1.0e --with-pcre --with-zlib=../zlib-1.2.11 --with-http_ssl_module --with-http_v2_module
-
-# 安装
-make && make install
-
-# 创建软链
-ln -s /usr/local/nginx/sbin/nginx /usr/bin/nginx
-
-# 检查是否安装成功
-nginx -v
+# 启动 Nginx
+nginx
 ```
-
-**参考：**
-1. [nginx支持HTTP2的配置过程](http://www.cnblogs.com/bugutian/p/6628455.html)
-2. [nginx的安装及配置](http://blog.csdn.net/vivid_110/article/details/50088349)
-3. [Nginx网站服务器学习与入门](https://www.qcloud.com/community/article/593436)
 
 ### 安装 Git
 
 ``` bash
 # 安装 Git
-yum -y install git
+yum install git
 
 # 查看 Git 版本
 git --version
@@ -217,6 +147,49 @@ pm2 start app.js --name blog
 
 现在可以通过 IP地址:3000 访问刚才部署的 Blog 了。
 
+## 开启防火墙
+
+### 安装
+
+``` bash
+# 查看版本
+firewall-cmd --version
+
+# 若提示 command not found，安装 firewalld
+yum install firewalld firewall-config
+```
+
+### 开启/关闭指定端口
+
+``` bash
+# 启动 firewalld
+systemctl start firewalld.service
+
+# 获取 firewalld 状态
+firewall-cmd --state
+
+# 开机自启 firewalld
+systemctl enable firewalld.service
+
+# firewalld 默认会关闭所有端口访问
+
+# 开启 80 端口(此时只有 80 端口可以访问)
+# --permanent 永久
+firewall-cmd --zone=public --add-port=80/tcp --permanent
+
+# 启用https服务
+firewall-cmd --zone=public --add-service=https --permanent
+
+# 开启 443 端口(https)
+firewall-cmd --zone=public --add-port=443/tcp --permanent
+
+# 重新加载防火墙，生效新添的规则
+firewall-cmd --reload
+
+# 查看 public 下开启的端口列表
+firewall-cmd --zone=public --list-ports
+```
+
 ## 配置 Nginx（同时开启https）
 
 *需要先完成域名解析*
@@ -233,10 +206,10 @@ pm2 start app.js --name blog
 # 我是通过 yum install nginx 安装的 nginx，所以 nginx 根目录在 /etc/nginx
 cd /etc/nginx
 
-# 创建 ssh 文件夹存放证书
-mkdir ssh
+# 创建 ssl 文件夹存放证书
+mkdir ssl
 
-cd ssh
+cd ssl
 
 # 通过 lrzsz (Xshell环境下用于文件上传和下载)上传证书
 rz
@@ -307,8 +280,11 @@ server {
 # 修改 nginx.conf 后，上传
 rz -y
 
-# 重新加载 nginx 配置
-systemctl reload nginx.service
+# 重启 Nginx
+nginx -s reload
+
+# 开机自启 Nginx
+systemctl enable nginx.service
 ```
 
 #### 4. 如果无法访问
@@ -470,4 +446,3 @@ pm2 updatePM2
 # 10. 更多命令参数请查看帮助
 pm2 --help
 ```
-
