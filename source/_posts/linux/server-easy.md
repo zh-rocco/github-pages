@@ -143,6 +143,10 @@ cd /home/blog
 
 # 以 blog 为 PM2 进程名称
 pm2 start app.js --name blog
+
+# 设置 pm2 启动的服务开机自启
+pm2 save
+pm2 startup
 ```
 
 现在可以通过 IP地址:3000 访问刚才部署的 Blog 了。
