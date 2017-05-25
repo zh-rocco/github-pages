@@ -1,16 +1,20 @@
 ---
 layout: post
-title: 服务器配置
+title: 服务器配置（Nginx，Node，PM2，HTTPS，HTTP2）
 author: Simple
 tags:
+  - lrzsz
+  - openssl
   - nginx
   - https
+  - systemctl
   - firewall
+  - pm2
 categories:
   - Linux
 comments: true
-date: 2017-05-21 00:10:00
-updated: 2017-05-21 00:10:00
+date: 2017-05-23 00:10:00
+updated: 2017-05-25 00:10:00
 
 ---
 
@@ -63,7 +67,7 @@ yum -y install lrzsz
 cd /usr/local/src
 ```
 
-### 更新 SSL（OpenSSL）
+### 更新/安装 OpenSSL
 
 ``` bash
 # 查看已安装的 SSL 版本
@@ -74,13 +78,13 @@ openssl version
 cd /usr/local/src
 
 # 下载源码包
-wget http://www.openssl.org/source/openssl-1.1.0e.tar.gz
+wget http://www.openssl.org/source/openssl-1.0.1h.tar.gz
 
 # 解压
-tar -zxvf openssl-1.1.0e.tar.gz
+tar -zxvf openssl-1.0.1h.tar.gz
 
 # 切换到源码目录内
-cd openssl-1.1.0e
+cd openssl-1.0.1h
 
 # 添加配置
 ./config --prefix=/usr/local/openssl
@@ -107,25 +111,40 @@ openssl version
 ### 安装 Nginx
 
 ``` bash
-# 切换到源码安装目录
+# 切换到源码安装目录（如果更换其他目录，下面引用的路径同样需要修改）
 cd /usr/local/src
 
 # 下载源码包
 wget http://nginx.org/download/nginx-1.12.0.tar.gz
-wget http://www.openssl.org/source/openssl-1.1.0e.tar.gz
+wget http://www.openssl.org/source/openssl-1.0.1h.tar.gz
 wget http://zlib.net/zlib-1.2.11.tar.gz
+wget https://ftp.pcre.org/pub/pcre/pcre-8.35.tar.gz
 
 # 解压
 tar -zxvf nginx-1.12.0.tar.gz
-tar -zxvf openssl-1.1.0e.tar.gz
+tar -zxvf openssl-1.0.1h.tar.gz
+tar -zxvf pcre-8.35.tar.gz
 tar -zxvf zlib-1.2.11.tar.gz
+
+# 切换目录
+cd nginx-1.12.0
 
 # 添加配置
 # --prefix=/usr/local/nginx --> 指定安装路径
 # --conf-path=/etc/nginx/nginx.conf --> 指定配置文件的位置
 # --with-http_ssl_module --> 启用 SSL 模块
 # --with-http_v2_module --> 启用 http2 模块
-./configure --prefix=/usr/local/nginx --conf-path=/etc/nginx/nginx.conf --with-openssl=../openssl-1.1.0e --with-pcre --with-zlib=../zlib-1.2.11 --with-http_ssl_module --with-http_v2_module
+
+# 转义符："\" 可以实现在多行输入一句命令
+./configure --prefix=/usr/local/nginx \
+            --conf-path=/etc/nginx/nginx.conf \
+            --with-openssl=/usr/local/src/openssl-1.0.1h \
+            --with-pcre=/usr/local/src/pcre-8.35 \
+            --with-zlib=/usr/local/src/zlib-1.2.11 \
+            --with-http_ssl_module \
+            --with-threads \
+            --with-debug \
+            --with-http_v2_module
 
 # 安装
 make && make install
@@ -141,12 +160,14 @@ nginx -v
 1. [nginx支持HTTP2的配置过程](http://www.cnblogs.com/bugutian/p/6628455.html)
 2. [nginx的安装及配置](http://blog.csdn.net/vivid_110/article/details/50088349)
 3. [Nginx网站服务器学习与入门](https://www.qcloud.com/community/article/593436)
+4. [nginx如何启用对HTTP2的支持](http://blog.csdn.net/littlesmallless/article/details/59173287)
+5. [CentOS 7中Nginx1.9.5编译安装教程systemctl启动](http://bbs.qcloud.com/thread-10429-1-1.html)
 
 ### 安装 Git
 
 ``` bash
 # 安装 Git
-yum -y install git
+yum install git
 
 # 查看 Git 版本
 git --version
@@ -213,9 +234,13 @@ cd /home/blog
 
 # 以 blog 为 PM2 进程名称
 pm2 start app.js --name blog
+
+# 设置 pm2 启动的服务开机自启
+pm2 save
+pm2 startup
 ```
 
-现在可以通过 IP地址:3000 访问刚才部署的 Blog 了。
+现在可以通过 *IP地址:3000* 访问刚才部署的 Blog 了。
 
 ## 配置 Nginx（同时开启https）
 
@@ -233,10 +258,10 @@ pm2 start app.js --name blog
 # 我是通过 yum install nginx 安装的 nginx，所以 nginx 根目录在 /etc/nginx
 cd /etc/nginx
 
-# 创建 ssh 文件夹存放证书
-mkdir ssh
+# 创建 ssl 文件夹存放证书
+mkdir ssl
 
-cd ssh
+cd ssl
 
 # 通过 lrzsz (Xshell环境下用于文件上传和下载)上传证书
 rz
@@ -270,7 +295,7 @@ server {
 
 # https 配置
 server {
-    listen 443;
+    listen 443 ssl http2 default_server;
     server_name  www.singple.com; #换成你的域名
 
     ssl                        on;
@@ -307,8 +332,11 @@ server {
 # 修改 nginx.conf 后，上传
 rz -y
 
-# 重新加载 nginx 配置
-systemctl reload nginx.service
+# 重启 Nginx
+nginx -s reload
+
+# 开机自启 Nginx
+systemctl enable nginx.service
 ```
 
 #### 4. 如果无法访问
@@ -327,6 +355,49 @@ firewall-cmd --reload
 **参考:**
 1. [个人网站如何开启HTTPS？](https://www.qcloud.com/community/article/667588001491218602)
 2. [Redirect all HTTP requests to HTTPS with Nginx](https://www.bjornjohansen.no/redirect-to-https-with-nginx)
+
+## 开启防火墙
+
+### 安装
+
+``` bash
+# 查看版本
+firewall-cmd --version
+
+# 若提示 command not found，安装 firewalld
+yum install firewalld firewall-config
+```
+
+### 开启/关闭指定端口
+
+``` bash
+# 启动 firewalld
+systemctl start firewalld.service
+
+# 获取 firewalld 状态
+firewall-cmd --state
+
+# 开机自启 firewalld
+systemctl enable firewalld.service
+
+# firewalld 默认会关闭所有端口访问
+
+# 开启 80 端口(此时只有 80 端口可以访问)
+# --permanent 永久
+firewall-cmd --zone=public --add-port=80/tcp --permanent
+
+# 启用https服务
+firewall-cmd --zone=public --add-service=https --permanent
+
+# 开启 443 端口(https)
+firewall-cmd --zone=public --add-port=443/tcp --permanent
+
+# 重新加载防火墙，生效新添的规则
+firewall-cmd --reload
+
+# 查看 public 下开启的端口列表
+firewall-cmd --zone=public --list-ports
+```
 
 
 ## 附录：
@@ -470,4 +541,3 @@ pm2 updatePM2
 # 10. 更多命令参数请查看帮助
 pm2 --help
 ```
-
