@@ -129,6 +129,9 @@ tar -zxvf zlib-1.2.11.tar.gz
 # 切换目录
 cd nginx-1.12.0
 
+# 创建一个 nginx 目录用来存放运行的临时文件夹
+mkdir -p /var/cache/nginx
+
 # 添加配置
 # --prefix=/usr/local/nginx --> 指定安装路径
 # --conf-path=/etc/nginx/nginx.conf --> 指定配置文件的位置
@@ -137,23 +140,85 @@ cd nginx-1.12.0
 
 # 转义符："\" 可以实现在多行输入一句命令
 ./configure --prefix=/usr/local/nginx \
+            --sbin-path=/usr/sbin/nginx \
             --conf-path=/etc/nginx/nginx.conf \
+            --error-log-path=/var/log/nginx/error.log \
+            --http-log-path=/var/log/nginx/access.log \
+            --pid-path=/var/run/nginx.pid \
+            --lock-path=/var/run/nginx.lock \
+            --http-client-body-temp-path=/var/cache/nginx/client_temp \
+            --http-proxy-temp-path=/var/cache/nginx/proxy_temp \
+            --http-fastcgi-temp-path=/var/cache/nginx/fastcgi_temp \
+            --http-uwsgi-temp-path=/var/cache/nginx/uwsgi_temp \
+            --http-scgi-temp-path=/var/cache/nginx/scgi_temp \
+            --user=nobody \
+            --group=nobody \
             --with-openssl=/usr/local/src/openssl-1.0.1h \
             --with-pcre=/usr/local/src/pcre-8.35 \
             --with-zlib=/usr/local/src/zlib-1.2.11 \
             --with-http_ssl_module \
+            --with-http_v2_module \
+            --with-http_realip_module \
+            --with-http_addition_module \
+            --with-http_sub_module \
+            --with-http_dav_module \
+            --with-http_flv_module \
+            --with-http_mp4_module \
+            --with-http_gunzip_module \
+            --with-http_gzip_static_module \
+            --with-http_random_index_module \
+            --with-http_secure_link_module \
+            --with-http_stub_status_module \
+            --with-http_auth_request_module \
+            --with-mail \
+            --with-mail_ssl_module \
+            --with-file-aio \
+            --with-ipv6 \
+            --with-http_v2_module \
             --with-threads \
-            --with-debug \
-            --with-http_v2_module
+            --with-stream \
+            --with-stream_ssl_module \
+            --with-threads \
+            --with-debug
 
 # 安装
 make && make install
 
-# 创建软链
-ln -s /usr/local/nginx/sbin/nginx /usr/bin/nginx
-
+# 重新启动 Xshell，或者重启 Shell 窗口 !!!
 # 检查是否安装成功
-nginx -v
+nginx -V
+
+# 配置 systemctl 服务
+vim /usr/lib/systemd/system/nginx.service
+
+# 复制代码
+# 按 i 输入以下内容
+
+[Unit]
+Description=nginx - high performance web server
+Documentation=http://nginx.org/en/docs/
+After=network.target remote-fs.target nss-lookup.target
+
+[Service]
+Type=forking
+PIDFile=/var/run/nginx.pid
+ExecStartPre=/usr/sbin/nginx -t -c /etc/nginx/nginx.conf
+ExecStart=/usr/sbin/nginx -c /etc/nginx/nginx.conf
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s QUIT $MAINPID
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
+
+# 按 Esc 推出 vim 编辑模式，输入 :wq 然后点击 Enter，保存并退出
+
+# 重新启动 Xshell，或者重启 Shell 窗口 !!!
+# 重启 nginx
+systemctl start nginx.service
+
+# 开机自启 nginx
+systemctl enable nginx.service
 ```
 
 **参考：**
@@ -332,10 +397,10 @@ server {
 # 修改 nginx.conf 后，上传
 rz -y
 
-# 重启 Nginx
+# 重启 nginx
 nginx -s reload
 
-# 开机自启 Nginx
+# 开机自启 nginx
 systemctl enable nginx.service
 ```
 
@@ -428,6 +493,34 @@ systemctl enable <单元>
 
 # 取消开机自动激活单元：
 systemctl disable <单元>
+```
+
+**参考:**
+1. [systemd-ArchWiki](https://wiki.archlinux.org/index.php/Systemd)
+2. [Systemd 入门教程：命令篇](http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html)
+
+### Nginx 常用命令：
+
+``` bash
+# nginx 启动
+# 其中参数 -c 指定 nginx 启动时加载的配置文件，当然也可以不指定配置文件，省略 -c，也可以启动，表示使用默认的配置文件
+nginx -c /etc/nginx/nginx.conf
+# OR
+nginx
+
+# nginx 停止
+# 例如在我们的编辑环境中已经安装好了 nginx，并且已启动，在命令提示符下直接输入 nginx -s stop 就可以停止了
+nginx -s stop
+# OR
+nginx -s quit
+# OR
+pkill -9 nginx
+
+# nginx 重载配置
+nginx -s reload
+
+# 检查配置文件是否正确
+nginx -t
 ```
 
 **参考:**

@@ -152,7 +152,20 @@ rm -rf <目录名>
 **参考:**
 1. [linux下文件夹的创建、复制、剪切、重命名、清空和删除命令](http://blog.csdn.net/numbibi/article/details/8026841)
 
-## Systemd
+## 创建软链
+
+``` bash
+# 创建软链
+ln -s /usr/local/nginx/sbin/nginx /usr/bin/nginx
+
+# 删除软链
+rm 软链
+```
+
+
+## 附录：
+
+### Systemd 常用命令：
 
 ``` bash
 # 立即激活单元
@@ -183,3 +196,74 @@ systemctl disable <单元>
 **参考:**
 1. [systemd-ArchWiki](https://wiki.archlinux.org/index.php/Systemd)
 2. [Systemd 入门教程：命令篇](http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html)
+
+### Nginx 常用命令：
+
+``` bash
+# nginx 启动
+# 其中参数 -c 指定 nginx 启动时加载的配置文件，当然也可以不指定配置文件，省略 -c，也可以启动，表示使用默认的配置文件
+nginx -c /etc/nginx/nginx.conf
+# OR
+nginx
+
+# nginx 停止
+# 例如在我们的编辑环境中已经安装好了 nginx，并且已启动，在命令提示符下直接输入 nginx -s stop 就可以停止了
+nginx -s stop
+# OR
+nginx -s quit
+# OR
+pkill -9 nginx
+
+# nginx 重载配置
+nginx -s reload
+
+# 检查配置文件是否正确
+nginx -t
+```
+
+**参考:**
+1. [systemd-ArchWiki](https://wiki.archlinux.org/index.php/Systemd)
+2. [Systemd 入门教程：命令篇](http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html)
+
+### firewalld 常用命令：
+
+``` bash
+# 查看版本
+firewall-cmd --version
+
+# 获取 firewalld 状态
+firewall-cmd --state
+
+# 查看开启的端口列表
+firewall-cmd --list-ports
+
+# 查看 public 下开启的端口列表
+firewall-cmd --zone=public --list-ports
+
+# 启动 firewalld
+systemctl start firewalld.service
+
+# 重启 firewalld
+systemctl restart firewalld.service
+
+# 开机自启 firewalld
+systemctl enable firewalld.service
+
+# 关闭开机自启 firewalld
+systemctl disable firewalld.service
+
+# firewalld 默认会关闭所有端口访问
+
+# 开启 80 端口(此时只有 80 端口可以访问)
+# --permanent 永久
+firewall-cmd --zone=public --add-port=80/tcp --permanent
+
+# 启用https服务
+firewall-cmd --permanent --zone=public --add-service=https
+
+# 开启 443 端口(https)
+firewall-cmd --zone=public --add-port=443/tcp --permanent
+
+# 重新加载防火墙，生效新添的规则
+firewall-cmd --reload
+```
