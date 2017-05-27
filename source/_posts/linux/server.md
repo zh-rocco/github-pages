@@ -78,13 +78,13 @@ openssl version
 cd /usr/local/src
 
 # 下载源码包
-wget http://www.openssl.org/source/openssl-1.0.1h.tar.gz
+wget https://www.openssl.org/source/openssl-1.0.2l.tar.gz
 
 # 解压
-tar -zxvf openssl-1.0.1h.tar.gz
+tar -zxvf openssl-1.0.2l.tar.gz
 
 # 切换到源码目录内
-cd openssl-1.0.1h
+cd openssl-1.0.2l
 
 # 添加配置
 ./config --prefix=/usr/local/openssl
@@ -116,13 +116,13 @@ cd /usr/local/src
 
 # 下载源码包
 wget http://nginx.org/download/nginx-1.12.0.tar.gz
-wget http://www.openssl.org/source/openssl-1.0.1h.tar.gz
+wget https://www.openssl.org/source/openssl-1.0.2l.tar.gz
 wget http://zlib.net/zlib-1.2.11.tar.gz
 wget https://ftp.pcre.org/pub/pcre/pcre-8.35.tar.gz
 
 # 解压
 tar -zxvf nginx-1.12.0.tar.gz
-tar -zxvf openssl-1.0.1h.tar.gz
+tar -zxvf openssl-1.0.2l.tar.gz
 tar -zxvf pcre-8.35.tar.gz
 tar -zxvf zlib-1.2.11.tar.gz
 
@@ -153,7 +153,7 @@ mkdir -p /var/cache/nginx
             --http-scgi-temp-path=/var/cache/nginx/scgi_temp \
             --user=nobody \
             --group=nobody \
-            --with-openssl=/usr/local/src/openssl-1.0.1h \
+            --with-openssl=/usr/local/src/openssl-1.0.2l \
             --with-pcre=/usr/local/src/pcre-8.35 \
             --with-zlib=/usr/local/src/zlib-1.2.11 \
             --with-http_ssl_module \
