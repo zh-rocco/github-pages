@@ -22,16 +22,36 @@ updated: 2017-05-25 00:10:00
 
 ## 连接服务器
 
+### 通过 Xshell 连接服务器
+
+#### 1. 安装
+
+略
+
+#### 2. 新建 SSH 连接
+
+![新建 SSH 连接](/images/article/xshell-new.jpg)
+
+<!-- more -->
+
+![绑定服务器主机 IP](/images/article/xhell-ip.jpg)
+
+输入完成后点击 "确定";
+
+![输入用户名](/images/article/xshell-user.jpg)
+
+![输入密码](/images/article/xshell-password.jpg)
+
+点击确定连接。
+
+**参考：**
+1. [腾讯云服务器部署 Node.js 应用](http://www.yedanbo.com/post/2017/qcloud-deploy-nodejs-application/)
+
 ### 打开多个 Shell 界面
 
 鼠标移到已经连接的服务器 **标签**（标红处）上，点击右键，选择 **复制SSH渠道**。
 
 ![Xshell复制SSH渠道](/images/article/xshell-copy-ssh.jpg)
-
-**参考：**
-1. [腾讯云服务器部署 Node.js 应用](http://www.yedanbo.com/post/2017/qcloud-deploy-nodejs-application/)
-
-<!-- more -->
 
 ## 更新系统和软件包
 
@@ -346,6 +366,8 @@ sz nginx.conf
 #### 2. 修改 nginx.conf 文件
 
 ``` nginx
+...
+
 # 设定实际的服务器列表
 upstream blog {
     server 127.0.0.1:3000;
@@ -389,7 +411,13 @@ server {
     listen       80 default;
     return       501;
 }
+
+...
 ```
+
+**补充：**
+
+[完整的 nginx.conf 文件](https://github.com/no-nothing/github-pages/blob/master/nginx/nginx.conf)
 
 #### 3. 上传修改后的 nginx.conf，并重新加载 nginx 配置
 
@@ -570,6 +598,8 @@ firewall-cmd --zone=public --add-port=443/tcp --permanent
 firewall-cmd --reload
 ```
 
+**参考:**
+1. [centos7 firewall 防火墙 命令](http://www.cnblogs.com/phpshen/p/5842118.html)
 
 ### PM2 常用命令：
 
@@ -634,3 +664,7 @@ pm2 updatePM2
 # 10. 更多命令参数请查看帮助
 pm2 --help
 ```
+
+**参考：**
+1. [PM2 官网](http://pm2.keymetrics.io/)
+2. [腾讯云服务器部署 Node.js 应用](http://www.yedanbo.com/post/2017/qcloud-deploy-nodejs-application/)
