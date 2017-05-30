@@ -1,6 +1,6 @@
 'use strict';
 
-let VERSION = '5301';
+let VERSION = '5302';
 let OFFLINE_CACHE = 's-offline-' + VERSION;
 let DATA_CACHE = 's-data-' + VERSION;
 
@@ -14,7 +14,8 @@ const FILES_TO_CACHE = [
 // 不需要缓存的地址
 const IGNORE_FILES = [
   /https?:\/\/hm.baidu.com\//,
-  /https?:\/\/www.google-analytics.com\//
+  /https?:\/\/www.google-analytics.com\//,
+  /https?:\/\/jsfiddle.net\//
 ];
 
 /**

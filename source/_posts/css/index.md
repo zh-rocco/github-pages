@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 常用 CSS 片段
+title: 容易忽视的 CSS
 author: Simple
 tags:
   - float
@@ -11,11 +11,6 @@ date: 2017-05-10 18:50:00
 updated: 2017-05-29 18:10:00
 
 ---
-
-## 清除浮动 / 闭合浮动
-
-[详见]()
-
 
 ## `box-sizing`
 
@@ -33,86 +28,21 @@ updated: 2017-05-29 18:10:00
 
 *border-box:* `Element width = width`, 此属性表现为怪异模式下的盒模型。
 
-
-## 文字抗锯齿
-
-``` css
-text-rendering: optimizeLegibility;
--webkit-font-smoothing: antialiased;
--moz-osx-font-smoothing: grayscale;
--moz-font-feature-settings: 'liga', 'kern';
-```
-
 <!-- more -->
 
-## 去除设置 `display: inline-block;` 时产生的间隙
 
-1\. 设置父元素 `font-size: 0`;
+## line-height 设置为数字和百分比的区别
 
-``` css
-ul {
-    list-style: none;
-    font-size: 0;
-}
-ul li {
-    display: inline-block;
-    font-size: 1rem;
-}
-```
+如果使用数字设定行高（**通常都这么做**），那么所有的子元素都会继承这个比例。因此，如果父元素的字体大小是 20 像素（或以 em 等表示的等价大小），
+行高是 2，则该元素的行高就是 40（即 20 x 2）像素。如果子元素的字体大小是 30 像素，则该元素的行高就是 60（即 30 × 2）像素。
 
-2\. 让当前元素 `float: left;`
+如果使用百分数或 em 值，那么只会继承产生的行高（即计算出来的值）。因此，如果父元素的字体大小是 20 像素，行高是 200%，
+则该元素的行高就是 40 像素。所有的子元素都将继承 40 像素的行高，不管字体大小是多少。
 
-``` css
-ul {
-    list-style: none;
-}
-ul li {
-    float: left;
-}
-```
+### 在线演示
 
-3.\ 设置父元素 `display: flex;`
+<script async src="//jsfiddle.net/singple/0wbsrxob/embed/html,css,result/"></script>
 
-``` css
-ul {
-    list-style: none;
-    display: flex;
-}
-ul li {
-}
-```
-
-## 解决 iOS 滑动卡顿
-
-`-webkit-overflow-scrolling: touch;`
-
-## 媒体查询
-
-``` css
-body {
-  background-color: grey;
-}
-@media screen and (max-width: 960px) {
-  body {
-    background-color: red;
-  }
-}
-@media screen and (max-width: 768px) {
-  body {
-    background-color: orange;
-  }
-}
-@media screen and (max-width: 550px) {
-  body {
-    background-color: yellow;
-  }
-}
-@media screen and (max-width: 320px) {
-  body {
-    background-color: green;
-  }
-}
-```
 
 ## 伪元素、伪类
 
@@ -123,20 +53,6 @@ body {
 原始的单冒号语法则被废弃了，但浏览器出于向后兼容的目的，仍然支持它们。
 IE9 之前的 Internet Explorer 版本均不支持双冒号。
 因此，你可以选择继续使用单冒号语法，除非你为 IE8 及以下版本设置了单独的 CSS ([参考](http://reference.sitepoint.com/css/conditionalcomments))
-
-## 解决老版本 `IE(<9)` 不支持 `HTML5` 标签
-
-``` html
-<!--[if lt IE 9]>
-<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-<![endif]-->
-```
-
-`html5shiv.js` 必须在 `<head></head>` 中加载。
-
-关于 `HTML5 shiv`
-与其他主流浏览器不同, Internet Explorer 8 及之前的版本会忽略它们不原生支持的元素的 CSS。
-`HTML5 shiv` 是专门用于解决这一问题的一段 JavaScript。（有时也称作 HTML5 shim）
 
 
 ## 会被继承的 CSS 属性
@@ -271,21 +187,45 @@ input, select, textarea {
 
 同级下，对于定位元素，`z-index` 最高的数显示在最上面。
 
-## 文字超出隐藏
 
-**`white-space`:**
+## table 相关
 
-- `normal` 默认。空白会被浏览器忽略；
-- `pre` 空白会被浏览器保留。其行为方式类似 `HTML` 中的 `<pre>` 标签；
-- `nowrap` 文本不会换行，文本会在在同一行上继续，直到遇到 `<br>` 标签为止；
-- `pre-wrap` 保留空白符序列，但是正常地进行换行；
-- `pre-line` 合并空白符序列，但是保留换行符；
-- `inherit` 规定应该从父元素继承 `white-space` 属性的值。
+1. 如果包含了 caption 元素，那么它必须是 table 中的第一个元素，（caption元素可以包含 p 和其他文本元素）
+2. 如果包含了 thead 或 tfoot，则必须包含 tbody。 tbody 不能位于 thead 之前。一个 table 只能拥有一个 thead 和一个 tfoot，但可以有多个 tbody 元素。
+3. 如果 table 是嵌套在 figure 元素内除 figcaption 以外的唯一元素，则可以省略caption，使用 figcaption 对表格进行描述。
+注意，不要在 table 中嵌套figcaption，而应跟往常一样将 figcaption放在 figure 中。
 
-显示一段文本的缩略，剩余的用 "..." 表示：
+## text-* 属性
+
+### text-align
+
+快级元素才可以设置 `text-align`，行间元素（`inline`）设置 `text-align` 无效。
+
+### text-indent
+
+快级元素才可以设置 `text-indent`，行间元素（`inline`）设置 `text-indent` 无效。
+
+### text-transform
 
 ``` css
-white-space: nowrap;   //强制单行显示
-overflow: hidden;   //多余隐藏
-text-overflow: ellipsis;   //出现省略号
+// 单词的首字母大写
+text-transform: capitalize;
+
+// 所有字母大写
+text-transform: uppercase;
+
+// 所有字母小写
+text-transform: lowercase;
+
+// 让文本保持本来的样子（可以用来取消继承的 text-transform 值）
+text-transform: none;
 ```
+
+**类似属性：**
+
+``` css
+// 使用小型大写字母
+font-variant: small-caps;
+```
+
+
