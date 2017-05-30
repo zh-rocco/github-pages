@@ -8,21 +8,23 @@ rss: /atom.xml
 
 # Content
 excerpt_link: 查看更多
-fancybox: false
+fancybox: true
 
 # Sidebar
 sidebar: right
 widgets:
 - category
 - tag
-# - tagcloud
-# - archive
 - recent_posts
 - friends
+# - tagcloud
+# - archive
 
 friends:
   叶丹波: http://www.yedanbo.com/
   Kelo: https://kongwz.github.io
+  # ivyesthan: http://ivyesthan.cn
+  # Eternal: https://colorfulWorld.github.io
 
 # display widgets at the bottom of index pages (pagination == 2)
 index_widgets:

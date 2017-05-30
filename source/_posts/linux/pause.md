@@ -22,6 +22,6 @@ updated: 2017-05-28 18:10:00
 
 中间查了多少资料自己都记不清了，这些资料主要涉及Nginx，HTTPS，HTTP2，Linux make 安装软件，在开启 HTTP2 的时候服务器还重装了几次系统（强迫症和洁癖，😭）。
 
-[这里](https://www.singple.com/2017/05/23/linux/server/)有完整的配置记录，欢迎查看和指正。
+[这里](https://www.singple.com/linux/server.html)有完整的配置记录，欢迎查看和指正。
 
 继续前端，GO.

@@ -18,6 +18,11 @@ updated: 2017-05-29 19:50:00
 2. inline 元素会忽略 margin-top 和 margin-bottom；
 3. inline 元素的 padding 越界到相邻元素/父元素；
 
+<!-- more -->
+
 ### 在线例子
 
 <script async src="//jsfiddle.net/singple/v2k5qj3t/7/embed/html,css,result/"></script>
+
+
+## 未完待续...
