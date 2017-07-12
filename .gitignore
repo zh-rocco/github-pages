@@ -1,5 +1,7 @@
 .idea/
+.history/
 .deploy*/
 node_modules/
 public/
 db.json
+npm-debug.log
