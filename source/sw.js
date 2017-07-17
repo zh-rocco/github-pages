@@ -7,6 +7,10 @@ let DATA_CACHE = 's-data-' + VERSION;
 // 需要缓存的离线页面
 const FILES_TO_CACHE = [
   '/',
+  '/index.html',
+  '/css/style.css',
+  '/css/images/banner.jpg',
+  '/js/script.js',
   '/offline.html',
   '/images/offline-image.png'
 ];

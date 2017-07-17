@@ -102,5 +102,33 @@ activate 回调中有两个方法：
 
 ## 安装 Service Worker
 
+``` javascript
+self.addEventListener('install', function (event) {
+  console.log('[SW]:', '开始安装 Service Worker');
 
+  event.waitUntil(
+    caches.open('test-cache-v1')
+      .then(cache => cache.addAll([
+        '/',
+        '/index.html',
+        '/css/style.css',
+        '/css/images/banner.jpg',
+        '/js/script.js',
+        '/offline.html',
+        '/images/offline-image.png'
+      ]))
+      .then(() => console.log('[SW]:', '离线资源缓存完毕，当前版本:', 'test-cache-v1'))
+      .then(() => self.skipWaiting())
+  );
+});
+```
 
+**说明：**
+
+- 首先新增了一个 install 事件监听器；
+- 然后调用事件的 `ExtendableEvent.waitUntil()` 方法，确保 Service Worker 在 `waitUntil()` 里面的代码执行完毕后再安装；
+- 在 `waitUntil()` 内，使用 `caches.open()` 方法来创建了一个叫做 test-cache-v1 的新的缓存，\
+该方法返回了一个 promise，当它 resolved 的时候（`then()` 方法），就可以调用在创建的缓存实例上的方法 `addAll()`，\
+这个方法接收一个相对于 origin 的 URL 组成的数组，这些 URL 就是想缓存的资源列表；
+- 如果 promise 被 rejected，安装就会失败，这个 worker 不会做任何事情，这也是可以的，因为你可以修复你的代码，在下次注册发生的时候，又可以进行尝试；
+- 当安装成功完成之后，Service Worker 就会激活，在第一次你的 Service Worker 注册／激活时，这并不会有什么不同，但是当 Service Worker 更新的时候 ，就不太一样了。
