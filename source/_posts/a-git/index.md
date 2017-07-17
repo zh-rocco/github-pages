@@ -48,3 +48,23 @@ git push origin :<branchName>
 # 要想真正删除远程分支上的内容，把一个空分支 push 到 server 上，等于删除该分支，git push origin :<branchName>
 # 注意：冒号前面的空格不能少
 ```
+
+<!-- more -->
+
+
+## 撤销提交
+
+### 复位
+``` bash
+# 该命令撤消上一个commit，但保留add的文件，使得Git暂存所有的因复位带来的差异，但不提交它
+git reset --soft
+
+# 强制复位前一个提交
+git reset --hard HEAD^
+```
+
+**参考：**
+
+1. [Git撤销提交和修改相关操作](http://www.cnblogs.com/binyue/p/5148928.html)
+
+### 反转

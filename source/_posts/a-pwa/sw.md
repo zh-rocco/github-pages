@@ -11,8 +11,6 @@ date: 2017-07-17 13:50:00
 
 ---
 
-# Service Worker
-
 ## Service Worker 有以下功能和特性：
 
 - 出于安全的考虑，必须在 HTTPS 环境下才能工作（host 为 localhost 或者 127.0.0.1 也可以）
@@ -25,6 +23,8 @@ date: 2017-07-17 13:50:00
 - 能向客户端推送消息
 - 异步实现，内部大都是通过 Promise 实现
 
+
+<!-- more -->
 
 ## 基础知识
 
@@ -143,5 +143,12 @@ self.addEventListener('install', function (event) {
 - 在 `waitUntil()` 内，使用 `caches.open()` 方法来创建了一个叫做 test-cache-v1 的新的缓存，
 该方法返回了一个 promise，当它 resolved 的时候（调用 `then()` 方法），就可以调用缓存实例上的方法 `addAll()`，
 这个方法接收一个相对于 origin 的 URL 组成的数组，这些 URL 就是想缓存的资源列表；
-- 如果 promise 被 rejected，安装就会失败，这个 worker 不会做任何事情，这也是可以的，因为你可以修复你的代码，在下次注册发生的时候，又可以进行尝试；
-- 当安装成功完成之后，Service Worker 就会激活，在第一次你的 Service Worker 注册／激活时，这并不会有什么不同，但是当 Service Worker 更新的时候 ，就不太一样了。
+- 如果 promise 被 rejected，安装就会失败，在下次注册时，会再次尝试缓存；
+- 在 install 事件中执行 `self.skipWaiting()` 方法跳过 waiting 状态，然后会直接进入 activate 阶段；
+- 当 install 完成之后，Service Worker 就会激活。
+
+
+## 自定义请求响应（fetch）
+
+任何被 Service Worker 控制的资源被请求到时，都会触发 fetch 事件，这些资源包括指定 scope 内的 html 文档，
+和这些 html 文档内引用的任何资源（比如 index.html 发起了一个跨域的请求来嵌入一个图片，这个也会通过 Service Worker）。
