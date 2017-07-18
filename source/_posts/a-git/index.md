@@ -56,8 +56,8 @@ git push origin :<branchName>
 
 ### 复位
 ``` bash
-# 该命令撤消上一个commit，但保留add的文件，使得Git暂存所有的因复位带来的差异，但不提交它
-git reset --soft
+# 该命令撤消上一个commit，但保留add的文件，Git 会暂存所有的因复位带来的差异，但不提交它们
+git reset --soft HEAD^
 
 # 强制复位前一个提交
 git reset --hard HEAD^

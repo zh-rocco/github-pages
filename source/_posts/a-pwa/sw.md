@@ -138,6 +138,7 @@ self.addEventListener('install', function (event) {
 
 **说明：**
 
+- self 是 Service Worker 线程内的顶级对象，类似于浏览器内的 window 对象；
 - 首先新增了一个 install 事件监听器；
 - 然后调用事件的 `ExtendableEvent.waitUntil()` 方法，确保 Service Worker 在 `waitUntil()` 里面的代码执行完毕后再安装；
 - 在 `waitUntil()` 内，使用 `caches.open()` 方法来创建了一个叫做 test-cache-v1 的新的缓存，
