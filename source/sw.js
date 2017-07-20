@@ -1,19 +1,24 @@
 'use strict';
 // 缓存版本
-const CACHE_VERSION = 's-data-v4';
-// 需要缓存的离线页面
-const FILES_TO_CACHE = [
-  '/',
-  '/index.html',
-  '/manifest.json',
-  '/fancybox/jquery.fancybox.css',
-  '/css/style.css',
-  '/css/images/banner.jpg',
-  '/css/fonts/fontawesome-webfont.woff',
-  'https://cdn.bootcss.com/jquery/2.0.3/jquery.min.js',
-  '/fancybox/jquery.fancybox.pack.js',
-  '/js/script.js'
-];
+const CACHE_VERSION = 's-data-v4',
+  // 需要缓存的离线页面
+  FILES_TO_CACHE = [
+    '/',
+    '/index.html',
+    '/manifest.json',
+    '/fancybox/jquery.fancybox.css',
+    '/css/style.css',
+    '/css/images/banner.jpg',
+    '/css/fonts/fontawesome-webfont.woff',
+    'https://cdn.bootcss.com/jquery/2.0.3/jquery.min.js',
+    '/fancybox/jquery.fancybox.pack.js',
+    '/js/script.js'
+  ],
+  // 不需要缓存的地址
+  IGNORE_FILES = [
+    /https?:\/\/hm.baidu.com\//,
+    /https?:\/\/jsfiddle.net\//
+  ];
 
 /**
  * Install 安装
