@@ -1,6 +1,6 @@
 'use strict';
 
-let VERSION = '060719';
+let VERSION = '070808';
 let OFFLINE_CACHE = 's-offline-' + VERSION;
 let DATA_CACHE = 's-data-' + VERSION;
 
