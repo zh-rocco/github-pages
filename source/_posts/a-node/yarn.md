@@ -24,7 +24,7 @@ date: 2017-08-08 12:30:00
 |feature|npm|yarn|
 |:---|:---|:---|
 |初始化项目|`npm init`|`yarn init`|
-|安装依赖包|`npm i`|`yarn install`|
+|安装依赖包|`npm i`|`yarn install` 或 `yarn`|
 |重新安装依赖包|`rm -rf node_modules && npm install`|`yarn upgrade`|
 |安装生产依赖包|`npm i -S [package]`|`yarn add [package]`|
 |安装开发依赖包|`npm i -D [package]`|`yarn add [package] -D`|
@@ -37,12 +37,21 @@ date: 2017-08-08 12:30:00
 |发布/登录/登出|`npm publish/login/logout`|`yarn publish/login/logout`|
 |查看源|`npm config get registry`|`yarn config get registry`|
 |设置源|`npm config set registry 'http://r.cnpmjs.org/'`|`yarn config set registry 'http://r.cnpmjs.org/'`|
+|帮助|`npm help`|`yarn help`|
 
 
 ## 解答
 
-1. Windows 下 `yarn global add [package]` 后，新安装的包无法在命令行调用：重新打开命令行界面。
-2. Yarn 安装慢：换源。
+1. Windows 下 `yarn global add [package]` 后，新安装的包无法在命令行调用：
+  ``` bash
+# 关闭所有已经打开的命令行界面
+
+# 执行以下命令
+yarn --version
+
+[package] --version
+```
+2. Yarn 安装慢：
   ``` bash
 # 安装 yrm
 yarn global add yrm
