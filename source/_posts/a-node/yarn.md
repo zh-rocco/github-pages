@@ -51,6 +51,7 @@ yarn --version
 
 [package] --version
 ```
+
 2. Yarn 安装慢：
   ``` bash
 # 安装 yrm
@@ -68,3 +69,16 @@ yrm test taobao
 yrm use cnpm
 ```
 
+3. 安装 node-sass 和 phantomjs 失败：
+  ``` bash
+# npm 有 .npmrc 文件，yarn 无
+
+# 设置 node-sass cnpm源
+yarn config set sass_binary_site https://cnpmjs.org/mirrors/node-sass/
+
+# 设置 phantomjs cnpm源
+yarn config set phantomjs_cdnurl https://cnpmjs.org/downloads
+
+# 查看 config 信息
+yarn config list
+```
