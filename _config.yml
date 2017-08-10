@@ -7,7 +7,7 @@ language: zh-CN
 timezone: Asia/Shanghai
 
 # URL
-url: https://www.singple.com
+url: https://singple.com
 root: /
 # permalink: :year/:month/:day/:title/
 # permalink: :category/:id
