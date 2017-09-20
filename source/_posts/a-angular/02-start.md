@@ -141,7 +141,7 @@ yarn add bootstrap
 ```
 
 #### 3. 安装类型描述文件 `@types/**`
-让 typescript 认识 javascript 库.
+让 typescript 识别 javascript 库.
 
 ``` bash
 yarn add @types/jquery -D
