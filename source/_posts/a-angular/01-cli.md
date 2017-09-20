@@ -28,21 +28,33 @@ yarn global add @angular/cli@latest
 
 ### 新建项目
 ``` bash
-ng new <project name>
+ng new [name]
 
 # 新建项目时不安装依赖(默认安装)
-ng new <project name> --skip-install
+ng new [name] --skip-install
 # 或, 简写
-ng new <project name> -si
+ng new [name] -si
 
 # 新建项目时使用 scss (默认为 css)
-ng new <project name> --style=scss
+ng new [name] --style=scss
 
 # 新建项目时安装路由(默认不安装)
-ng new <project name> --routing
+ng new [name] --routing
 
 # 综合
-ng new <project name> -si --style=scss --routing
+ng new [name] -si --routing --style=scss
+```
+
+### 新建模块、组件、服务等
+``` bash
+# 新建模块
+ng g module [path/name]
+
+# 新建组件
+ng g component [path/name]
+
+# 其他支持命令行创建的模块
+component、directive、pipe、service、class、guard、interface、enum、module
 ```
 
 ### 开发模式
@@ -52,6 +64,9 @@ ng server
 
 # 开启 dev 模式(自动打开浏览器)
 ng server -o
+
+# 自定义端口号
+ng server --port=4201
 ```
 
 ### 生产构建
@@ -59,7 +74,8 @@ ng server -o
 ng build --prod
 ```
 
+
 ## 参考
 
-1. []()
+1. [angular-cli](https://github.com/angular/angular-cli)
 

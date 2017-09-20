@@ -66,6 +66,10 @@ export class AppModule {}
 
 ### 启动过程
 
+1. 启动时加载了哪个页面？
+2. 启动时加载了哪些脚本？
+3. 这些脚本做了什么事？
+
 **查看 .angular-cli.json 文件**
 
 ``` json
@@ -97,10 +101,6 @@ export class AppModule {}
 }
 ```
 
-1. 启动时加载了哪个页面？
-2. 启动时加载了哪些脚本？
-3. 这些脚本做了什么事？
-
 ``` typescript
 /* src/main.ts */
 import { enableProdMode } from '@angular/core'; // 此模块用来关闭 angular 的开发者模式
@@ -119,7 +119,7 @@ platformBrowserDynamic()
   .catch(err => console.log(err));
 
 // 此处为 angular 应用运行的起点, 然后 angular 会分析 AppModule 及其所有子模块的所有依赖, 当加载完这些依赖后,
-// angular 会在 src/index.html 内寻找 AppModule 的主组件(AppComponent)内声明的 selector 标签, 一般为 <app-root></app-root>,
+// angular 会在 src/index.html 内寻找 AppModule 的主组件(AppComponent)内声明的 CSS 选择器, 一般默认为 <app-root></app-root>,
 // 然后 angular 会用主组件(AppComponent)的模板替换掉 <app-root></app-root> 的内容.
 
 // 其他说明: 在替换掉 <app-root></app-root> 之前会先显示 <app-root></app-root> 标签内的内容.
@@ -158,7 +158,7 @@ yarn add bootstrap
 }
 ```
 
-#### 3. 安装 `@types/**`
+#### 3. 安装类型描述文件 `@types/**`
 
 让 typescript 认识 javascript 库.
 
