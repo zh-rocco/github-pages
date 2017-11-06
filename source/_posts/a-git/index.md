@@ -68,3 +68,37 @@ git reset --hard HEAD^
 1. [Git撤销提交和修改相关操作](http://www.cnblogs.com/binyue/p/5148928.html)
 
 ### 反转
+
+
+## 空分支
+
+### 清空当前分支
+
+``` bash
+# 清空当前分支
+# 注意不要遗漏 -r 后面的 .
+git rm --cached -r .
+git clean -f -d
+
+# 创建空的 commit
+git commit --allow-empty -m "[empty] initial commit"
+
+# 推送空分支
+git push
+```
+
+### 新建空分支
+
+``` bash
+# 新建空分支
+# 注意不要遗漏 -r 后面的 .
+git branch -b <new_branch>
+git rm --cached -r .
+git clean -f -d
+
+# 创建空的 commit
+git commit --allow-empty -m "[empty] initial commit"
+
+# 推送空分支
+git push origin <new_branch>
+```
