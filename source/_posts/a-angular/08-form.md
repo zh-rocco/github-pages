@@ -26,6 +26,8 @@ date: 2017-09-24 18:00:00
 5. 在 form 标签上添加本地模板指令 `#myForm="ngForm"`, 可以在模板中访问 `NgForm` 创建的对象.
 6. `NgForm` 下提交表单会触发 `ngSubmit` 事件, 将 `(ngSubmit)="onSubmit(myForm.value)"` 添加到 form 标签上, 可以在 `onSubmit` 方法中提交表单.
 
+<!-- more -->
+
 #### 2. ngModel
 *会创建一个 `FormControl` 的实例.*
 

@@ -26,6 +26,7 @@ const routes: Routes = [
 1. 当用户访问根目录时会被重定向至 `/home` 页面;
 2. 通配符路由 `{path: '**', component: Code404Component}`, 页面不存在时跳转至 `Code404Component` 组件, 放在路由对象数组的最后面;
 
+<!-- more -->
 
 ## routeLink 指令
 1. template 内 `[routeLink]` 的参数是一个数组, 例如 `<a [routeLink]="['/']">Home</a>`;

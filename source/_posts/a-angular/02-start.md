@@ -29,6 +29,8 @@ export class AppComponent {
 }
 ```
 
+<!-- more -->
+
 #### 说明:
 1. 首先使用 `import` 导入 `Component` 类.
 2. `@`: 装饰器, 用以附加元数据.

@@ -26,6 +26,8 @@ yarn cache clean
 yarn global add @angular/cli@latest
 ```
 
+<!-- more -->
+
 ### 新建项目
 ``` bash
 ng new [name]
