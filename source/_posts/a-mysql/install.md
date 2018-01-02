@@ -33,11 +33,7 @@ skip-grant-tables
 # skip-grant-tables 表示忽略密码
 ```
 
-5. 以管理员权限启动 CMD 或 PowerShell，并将路径切换至 MySQL 的 bin 目录（`D:\Program Files\mysql-5.7.20-winx64\bin`），然后输入：
-
-```bash
-mysqld -install
-```
+5. 以管理员权限启动 CMD 或 PowerShell，并将路径切换至 MySQL 的 bin 目录（`D:\Program Files\mysql-5.7.20-winx64\bin`），然后输入 `mysqld -install`。
 
 6. 命令行输入 `mysqld --initialize` 自动生成带随机密码的 root 用户。
 
