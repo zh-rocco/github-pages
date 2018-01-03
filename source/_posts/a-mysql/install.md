@@ -1,6 +1,6 @@
 ---
 layout: post
-title: MySQL 安装教程（Windows 平台）
+title: MySQL 5.7 安装教程（Windows 平台）
 author: Simple
 tags:
   - mysql
@@ -20,18 +20,18 @@ date: 2018-01-02 22:30:00
 
 4. 新建 mysql.ini，并编辑内容为：
 
-```plain
-[mysqld]
-basedir=D:\Program Files\mysql-5.7.20-winx64\
-datadir=D:\Program Files\mysql-5.7.20-winx64\data\
-port=3306
-skip-grant-tables
+   ```plain
+   [mysqld]
+   basedir=D:\Program Files\mysql-5.7.20-winx64\
+   datadir=D:\Program Files\mysql-5.7.20-winx64\data\
+   port=3306
+   skip-grant-tables
 
-# basedir 表示 mysql 安装路径
-# datadir 表示 mysql 数据文件存储路径
-# port 表示 mysql 端口
-# skip-grant-tables 表示忽略密码
-```
+   # basedir 表示 mysql 安装路径
+   # datadir 表示 mysql 数据文件存储路径
+   # port 表示 mysql 端口
+   # skip-grant-tables 表示忽略密码
+   ```
 
 5. 以管理员权限启动 CMD 或 PowerShell，并将路径切换至 MySQL 的 bin 目录（`D:\Program Files\mysql-5.7.20-winx64\bin`），然后输入 `mysqld -install`。
 
