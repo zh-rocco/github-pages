@@ -2,7 +2,6 @@
 menu:
   首页: /
   归档: /archives
-  聚合: /atom.xml
 
 rss: /atom.xml
 
@@ -14,33 +13,33 @@ fancybox: true
 sidebar: right
 widgets:
 - category
-- tag
+#- tag
+- tagcloud
 - recent_posts
-- friends
-# - tagcloud
-# - archive
+#- friends
+#- archive
 
 friends:
   叶丹波: http://www.yedanbo.com/
-  Kelo: https://kongwz.github.io
-  # ivyesthan: http://ivyesthan.cn
-  # Eternal: https://colorfulWorld.github.io
+  Kelo: https://kongwz.github.io/
+  #ivyesthan: http://ivyesthan.cn/
+  Eternal: https://colorfulWorld.github.io/
 
 # display widgets at the bottom of index pages (pagination == 2)
 index_widgets:
-# - category
-# - tagcloud
-# - archive
+#- category
+#- tagcloud
+#- archive
 
 # widget behavior
 archive_type: 'monthly'
 show_count: true
 
 # Miscellaneous
-# google_analytics:
 favicon: /images/favicon.ico
 share_avatar: /images/avatar.jpg
-# twitter:
-# google_plus:
-# fb_admins:
-# fb_app_id:
+#google_analytics:
+#twitter:
+#google_plus:
+#fb_admins:
+#fb_app_id:

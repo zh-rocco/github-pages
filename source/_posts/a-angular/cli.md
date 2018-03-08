@@ -1,20 +1,17 @@
 ---
 layout: post
-title: @angular/cli
-author: Simple
+title: Angular 入门：angular/cli
 tags:
-  - cli
 categories:
   - Angular
 comments: true
-date: 2017-09-18 23:30:00
-
+date: 2017-09-18 21:00:00
+updated: 2018-03-01 16:50:00
 ---
 
-## 基础语法
-
 ### 安装 & 更新
-``` bash
+
+```bash
 yarn global add @angular/cli
 
 # 查看版本
@@ -29,7 +26,8 @@ yarn global add @angular/cli@latest
 <!-- more -->
 
 ### 新建项目
-``` bash
+
+```bash
 ng new [name]
 
 # 新建项目时不安装依赖(默认安装)
@@ -48,7 +46,8 @@ ng new [name] -si --routing --style=scss
 ```
 
 ### 新建模块、组件、服务等
-``` bash
+
+```bash
 # 新建模块
 ng g module [path/name]
 
@@ -60,7 +59,8 @@ component、directive、pipe、service、class、guard、interface、enum、modu
 ```
 
 ### 开发模式
-``` bash
+
+```bash
 # 开启 dev 模式
 ng server
 
@@ -72,12 +72,11 @@ ng server --port=4201
 ```
 
 ### 生产构建
-``` bash
+
+```bash
 ng build --prod
 ```
 
+### 参考
 
-## 参考
-
-1. [angular-cli](https://github.com/angular/angular-cli)
-
+1.  [angular-cli](https://github.com/angular/angular-cli)

@@ -1,13 +1,14 @@
 # Site
-title: Simple
-subtitle: 简简简简单
-description: JavaScript, ES6, CSS, 前端笔记
-author: no-nothing
+title: Rocco
+subtitle: rocco
+description: JavaScript, ES6, CSS3, 前端笔记
+author: zh-rocco
 language: zh-CN
 timezone: Asia/Shanghai
 
 # URL
 url: https://singple.com
+github: https://github.com/zh-rocco
 root: /
 # permalink: :year/:month/:day/:title/
 # permalink: :category/:id
@@ -39,7 +40,16 @@ highlight:
   enable: true
   line_number: true
   auto_detect: true
-  tab_replace:
+  tab_replace: true
+
+# Home page setting
+# path: Root path for your blogs index page. (default = '')
+# per_page: Posts displayed per page. (0 = disable pagination)
+# order_by: Posts order. (Order by date descending by default)
+index_generator:
+  path: ''
+  per_page: 10
+  order_by: -date
 
 # Category & Tag
 default_category: uncategorized
@@ -59,10 +69,9 @@ pagination_dir: page
 theme: landscape
 
 # Deployment
+## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
   repo:
-    github: git@github.com:no-nothing/no-nothing.github.io.git
-    coding: https://git.coding.net/know-nothing/know-nothing.coding.me.git
-    # qcloud: git@119.29.107.78:/home/git/blog.git
+    github: git@github.com:zh-rocco/zh-rocco.github.io.git
   branch: master

@@ -1,4 +1,8 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
 <%- partial('_partial/head') %>
+
 <body>
   <div id="container">
     <div id="wrap">
@@ -14,6 +18,7 @@
     <%- partial('_partial/mobile-nav', null, {cache: !config.relative_link}) %>
     <%- partial('_partial/after-footer') %>
   </div>
+
   <% if (is_home()){ %>
   <%- partial('_partial/pwa') %>
   <% } %>

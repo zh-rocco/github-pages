@@ -1,8 +1,10 @@
+.DS_Store
+Thumbs.db
 .idea/
 .vscode/
 .history/
-.deploy*/
 node_modules/
 public/
+.deploy*/
 db.json
-npm-debug.log
+*.log

@@ -1,7 +1,6 @@
 ---
 layout: post
 title: 服务器配置（Nginx，Node，PM2，HTTPS，HTTP2）
-author: Simple
 tags:
   - lrzsz
   - openssl
@@ -14,11 +13,10 @@ categories:
   - Linux
 comments: true
 date: 2017-05-23 00:10:00
-updated: 2017-05-25 00:10:00
-
+updated: 2018-03-02 16:50:00
 ---
 
-*环境：腾讯云服务器，64位 CentOS-7，root用户*
+_环境：腾讯云服务器，64 位 CentOS-7，root 用户_
 
 ## 连接服务器
 
@@ -45,17 +43,18 @@ updated: 2017-05-25 00:10:00
 点击确定连接。
 
 **参考：**
-1. [腾讯云服务器部署 Node.js 应用](http://www.yedanbo.com/post/2017/qcloud-deploy-nodejs-application/)
+
+1.  [腾讯云服务器部署 Node.js 应用](http://www.yedanbo.com/post/2017/qcloud-deploy-nodejs-application/)
 
 ### 打开多个 Shell 界面
 
-鼠标移到已经连接的服务器 **标签**（标红处）上，点击右键，选择 **复制SSH渠道**。
+鼠标移到已经连接的服务器 **标签**（标红处）上，点击右键，选择 **复制 SSH 渠道**。
 
 ![Xshell复制SSH渠道](/images/article/xshell-copy-ssh.jpg)
 
 ## 更新系统和软件包
 
-``` bash
+```bash
 yum clean all
 yum update
 yum upgrade
@@ -65,7 +64,7 @@ yum upgrade
 
 ### 配置编译环境
 
-``` bash
+```bash
 # 安装 make
 yum -y install gcc automake autoconf libtool make
 
@@ -75,7 +74,7 @@ yum -y install gcc gcc-c++
 
 ### 安装 lrzsz（Xshell 环境下用于文件上传和下载）
 
-``` bash
+```bash
 yum -y install lrzsz
 ```
 
@@ -83,13 +82,13 @@ yum -y install lrzsz
 
 可以是任何目录，我选择的是 `/usr/local/src`。
 
-``` bash
+```bash
 cd /usr/local/src
 ```
 
 ### 更新/安装 OpenSSL
 
-``` bash
+```bash
 # 查看已安装的 SSL 版本
 openssl version
 
@@ -126,11 +125,12 @@ openssl version
 ```
 
 **参考：**
-1. [CentOS之——升级openssl为最新版](http://blog.csdn.net/l1028386804/article/details/53165252)
+
+1.  [CentOS 之——升级 openssl 为最新版](http://blog.csdn.net/l1028386804/article/details/53165252)
 
 ### 安装 Nginx
 
-``` bash
+```bash
 # 切换到源码安装目录（如果更换其他目录，下面引用的路径同样需要修改）
 cd /usr/local/src
 
@@ -242,15 +242,16 @@ systemctl enable nginx.service
 ```
 
 **参考：**
-1. [nginx支持HTTP2的配置过程](http://www.cnblogs.com/bugutian/p/6628455.html)
-2. [nginx的安装及配置](http://blog.csdn.net/vivid_110/article/details/50088349)
-3. [Nginx网站服务器学习与入门](https://www.qcloud.com/community/article/593436)
-4. [nginx如何启用对HTTP2的支持](http://blog.csdn.net/littlesmallless/article/details/59173287)
-5. [CentOS 7中Nginx1.9.5编译安装教程systemctl启动](http://bbs.qcloud.com/thread-10429-1-1.html)
+
+1.  [nginx 支持 HTTP2 的配置过程](http://www.cnblogs.com/bugutian/p/6628455.html)
+2.  [nginx 的安装及配置](http://blog.csdn.net/vivid_110/article/details/50088349)
+3.  [Nginx 网站服务器学习与入门](https://www.qcloud.com/community/article/593436)
+4.  [nginx 如何启用对 HTTP2 的支持](http://blog.csdn.net/littlesmallless/article/details/59173287)
+5.  [CentOS 7 中 Nginx1.9.5 编译安装教程 systemctl 启动](http://bbs.qcloud.com/thread-10429-1-1.html)
 
 ### 安装 Git
 
-``` bash
+```bash
 # 安装 Git
 yum install git
 
@@ -260,7 +261,7 @@ git --version
 
 ### 安装 Node 和 PM2
 
-``` bash
+```bash
 # 安装 Node.js
 yum install nodejs
 
@@ -277,7 +278,7 @@ npm i -g pm2
 
 ### 部署 Node 服务器环境
 
-``` bash
+```bash
 # 我将博客放在了 /home 挂载点内
 # 将 Node 静态服务模板克隆到 /home/blog 目录下
 git clone https://github.com/no-nothing/server.git /home/blog
@@ -291,7 +292,7 @@ npm i
 
 ### 部署 Blog 页面
 
-``` bash
+```bash
 # 克隆自己的 Blog 页面到 /home/blog/public 目录下
 git clone https://github.com/no-nothing/no-nothing.github.io.git /home/blog/public
 ```
@@ -300,7 +301,7 @@ git clone https://github.com/no-nothing/no-nothing.github.io.git /home/blog/publ
 
 先将本地的网页压缩成 zip 包（Centos 默认支持解压 zip 文件）
 
-``` bash
+```bash
 # 切换到 blog 目录内
 cd /home/blog
 
@@ -313,7 +314,7 @@ unzip 压缩包名.zip -d /home/blog/public
 
 ### 启用 Node 服务
 
-``` bash
+```bash
 # 切换到 blog 目录内
 cd /home/blog
 
@@ -325,21 +326,21 @@ pm2 save
 pm2 startup
 ```
 
-现在可以通过 *IP地址:3000* 访问刚才部署的 Blog 了。
+现在可以通过 _IP 地址:3000_ 访问刚才部署的 Blog 了。
 
-## 配置 Nginx（同时开启https）
+## 配置 Nginx（同时开启 https）
 
-*需要先完成域名解析*
+_需要先完成域名解析_
 
 ### 获取证书
 
-1. 打开[腾讯云-SSL证书管理](https://console.qcloud.com/ssl)，点击 **申请证书**，按提示一步步操作；
-2. 下载证书；
-3. 解压下载好的压缩包，选择符合自己服务环境的证书；
+1.  打开[腾讯云-SSL 证书管理](https://console.qcloud.com/ssl)，点击 **申请证书**，按提示一步步操作；
+2.  下载证书；
+3.  解压下载好的压缩包，选择符合自己服务环境的证书；
 
 ### 将证书上传至服务器
 
-``` bash
+```bash
 # 我是通过 yum install nginx 安装的 nginx，所以 nginx 根目录在 /etc/nginx
 cd /etc/nginx
 
@@ -357,7 +358,7 @@ rz
 
 #### 1. 从服务器取出 nginx.conf 文件
 
-``` bash
+```bash
 cd /etc/nginx
 
 sz nginx.conf
@@ -365,7 +366,7 @@ sz nginx.conf
 
 #### 2. 修改 nginx.conf 文件
 
-``` nginx
+```nginx
 ...
 
 # 设定实际的服务器列表
@@ -421,7 +422,7 @@ server {
 
 #### 3. 上传修改后的 nginx.conf，并重新加载 nginx 配置
 
-``` bash
+```bash
 # 修改 nginx.conf 后，上传
 rz -y
 
@@ -434,7 +435,7 @@ systemctl enable nginx.service
 
 #### 4. 如果无法访问
 
-``` bash
+```bash
 # 启用https服务
 firewall-cmd --permanent --zone=public --add-service=https
 
@@ -446,14 +447,15 @@ firewall-cmd --reload
 ```
 
 **参考:**
-1. [个人网站如何开启HTTPS？](https://www.qcloud.com/community/article/667588001491218602)
-2. [Redirect all HTTP requests to HTTPS with Nginx](https://www.bjornjohansen.no/redirect-to-https-with-nginx)
+
+1.  [个人网站如何开启 HTTPS？](https://www.qcloud.com/community/article/667588001491218602)
+2.  [Redirect all HTTP requests to HTTPS with Nginx](https://www.bjornjohansen.no/redirect-to-https-with-nginx)
 
 ## 开启防火墙
 
 ### 安装
 
-``` bash
+```bash
 # 查看版本
 firewall-cmd --version
 
@@ -463,7 +465,7 @@ yum install firewalld firewall-config
 
 ### 开启/关闭指定端口
 
-``` bash
+```bash
 # 启动 firewalld
 systemctl start firewalld.service
 
@@ -492,12 +494,11 @@ firewall-cmd --reload
 firewall-cmd --zone=public --list-ports
 ```
 
-
 ## 附录：
 
 ### Systemd 常用命令：
 
-``` bash
+```bash
 # 立即激活单元
 systemctl start <单元>
 
@@ -524,12 +525,13 @@ systemctl disable <单元>
 ```
 
 **参考:**
-1. [systemd-ArchWiki](https://wiki.archlinux.org/index.php/Systemd)
-2. [Systemd 入门教程：命令篇](http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html)
+
+1.  [systemd-ArchWiki](https://wiki.archlinux.org/index.php/Systemd)
+2.  [Systemd 入门教程：命令篇](http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html)
 
 ### Nginx 常用命令：
 
-``` bash
+```bash
 # nginx 启动
 # 其中参数 -c 指定 nginx 启动时加载的配置文件，当然也可以不指定配置文件，省略 -c，也可以启动，表示使用默认的配置文件
 nginx -c /etc/nginx/nginx.conf
@@ -552,12 +554,13 @@ nginx -t
 ```
 
 **参考:**
-1. [systemd-ArchWiki](https://wiki.archlinux.org/index.php/Systemd)
-2. [Systemd 入门教程：命令篇](http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html)
+
+1.  [systemd-ArchWiki](https://wiki.archlinux.org/index.php/Systemd)
+2.  [Systemd 入门教程：命令篇](http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html)
 
 ### firewalld 常用命令：
 
-``` bash
+```bash
 # 查看版本
 firewall-cmd --version
 
@@ -599,11 +602,12 @@ firewall-cmd --reload
 ```
 
 **参考:**
-1. [centos7 firewall 防火墙 命令](http://www.cnblogs.com/phpshen/p/5842118.html)
+
+1.  [centos7 firewall 防火墙 命令](http://www.cnblogs.com/phpshen/p/5842118.html)
 
 ### PM2 常用命令：
 
-``` bash
+```bash
 # 1. 启动
 pm2 start app.js
 # 以 process-name 为 PM2 进程名称
@@ -666,5 +670,6 @@ pm2 --help
 ```
 
 **参考：**
-1. [PM2 官网](http://pm2.keymetrics.io/)
-2. [腾讯云服务器部署 Node.js 应用](http://www.yedanbo.com/post/2017/qcloud-deploy-nodejs-application/)
+
+1.  [PM2 官网](http://pm2.keymetrics.io/)
+2.  [腾讯云服务器部署 Node.js 应用](http://www.yedanbo.com/post/2017/qcloud-deploy-nodejs-application/)

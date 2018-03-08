@@ -1,22 +1,28 @@
 ---
 layout: post
 title: Git 常用命令
-author: Simple
-tags:
-  - git
 categories:
   - Git
 comments: true
 date: 2017-05-31 15:20:00
-updated: 2017-05-31 15:20:00
-
+updated: 2018-03-02 16:50:00
 ---
 
-## 分支操作
+## 生成 SSH keys
 
-### 查看、创建、切换
+```bash
+# 查看 SSH keys 是否存在
+ls -al ~/.ssh
 
-``` bash
+# 生成新的 SSH key
+ssh-keygen -t rsa -C "rocco.mormont@gmail.com"
+```
+
+<!-- more -->
+
+## 查看/创建/切换 分支
+
+```bash
 # 查看本地分支
 git branch
 
@@ -33,9 +39,9 @@ git checkout <branchName>
 git checkout -b <branchName>
 ```
 
-### 删除
+## 删除分支
 
-``` bash
+```bash
 # 删除本地的某个分支
 git branch -D <branchName>
 
@@ -49,13 +55,9 @@ git push origin :<branchName>
 # 注意：冒号前面的空格不能少
 ```
 
-<!-- more -->
+## 撤销提交（复位）
 
-
-## 撤销提交
-
-### 复位
-``` bash
+```bash
 # 该命令撤消上一个commit，但保留add的文件，Git 会暂存所有的因复位带来的差异，但不提交它们
 git reset --soft HEAD^
 
@@ -65,16 +67,11 @@ git reset --hard HEAD^
 
 **参考：**
 
-1. [Git撤销提交和修改相关操作](http://www.cnblogs.com/binyue/p/5148928.html)
+1.  [Git 撤销提交和修改相关操作](http://www.cnblogs.com/binyue/p/5148928.html)
 
-### 反转
+## 清空当前分支
 
-
-## 空分支
-
-### 清空当前分支
-
-``` bash
+```bash
 # 清空当前分支
 # 注意不要遗漏 -r 后面的 .
 git rm --cached -r .
@@ -87,9 +84,9 @@ git commit --allow-empty -m "[empty] initial commit"
 git push
 ```
 
-### 新建空分支
+## 新建空分支
 
-``` bash
+```bash
 # 新建空分支
 # 注意不要遗漏 -r 后面的 .
 git branch -b <new_branch>

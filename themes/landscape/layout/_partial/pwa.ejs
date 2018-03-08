@@ -7,7 +7,7 @@
    */
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker
-      .register('sw-backup.js', {scope: '/'})
+      .register('sw.js', {scope: '/'})
       .then(function (reg) {
         console.log('Service Worker 注册成功，域名: ', reg.scope);
       })
