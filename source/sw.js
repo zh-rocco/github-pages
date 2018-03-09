@@ -1,6 +1,6 @@
 'use strict';
 
-const VERSION = '180309';
+const VERSION = '180309-01';
 const OFFLINE_CACHE = 's-offline-' + VERSION;
 const DATA_CACHE = 's-data-' + VERSION;
 
@@ -15,9 +15,10 @@ const FILES_TO_CACHE = [
   'https://cdn.bootcss.com/jquery/2.0.3/jquery.min.js',
   '/fancybox/jquery.fancybox.pack.js',
   '/js/script.js',
-  '/css/images/banner.jpg',
+  '/images/favicon.ico',
   '/images/avatar.jpg',
   '/images/offline-image.png',
+  '/css/images/banner.jpg',
   '/css/fonts/fontawesome-webfont.woff'
 ];
 
