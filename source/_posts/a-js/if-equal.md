@@ -4,7 +4,7 @@ title: JS 中的相等性判断
 categories:
   - JavaScript
 comments: true
-date: 2017-05-02 11:50:00
+date: 2017-12-02 11:50:00
 updated: 2018-03-02 16:50:00
 ---
 
@@ -31,7 +31,7 @@ console.log(null === null); // true
 console.log(undefined === undefined); // true
 ```
 
-## 非严格相等 ==
+## 非严格相等 `==`
 
 * 相等操作符比较两个值是否相等，在比较前将两个被比较的值转换为相同类型 **（String、Boolean 都会先转化为 `number` 型）**。
 * 在转换后（等式的一边或两边都可能被转换），最终的比较方式等同于全等操作符 `===` 的比较方式。
@@ -49,7 +49,7 @@ console.log(0 == false); // true
 
 **注意：** 进行非严格相等比较时，布尔值会转化为 number 型，true -> 1，false -> 0
 
-## Object.is
+## `Object.is`
 
 `Object.is(value1, value2)`;
 
@@ -67,16 +67,12 @@ Object.is(NaN, NaN); // true
 
 ## 一些例题
 
-### Question 1
-
-奇特的 `++[[]][+[]]+[+[]]` ：
+> 奇特的 `++[[]][+[]]+[+[]]` ：
 
 ```javascript
 let c = ++[[]][+[]] + [+[]];
 console.log(c); // 10
 ```
-
-#### 解答：
 
 **复习：** [运算符优先级（MDN）](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Operator_Precedence)
 

@@ -21,6 +21,8 @@ _教程前提：1. 本机安装 WebStorm；2. 拥有 GitHub 账号。_
 
 **附加：** [Git 官方中文教程](https://git-scm.com/book/zh/v2)，Git 进阶必备。
 
+<!-- more -->
+
 ## 二、创建 SSH 密钥并添加到 GitHub
 
 ### 1. 创建 SSH 密钥

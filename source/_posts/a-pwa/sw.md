@@ -6,29 +6,29 @@ tags:
 categories:
   - PWA
 comments: true
-date: 2017-07-17 13:50:00
-updated: 2018-03-02 16:50:00
+date: 2017-11-17 13:50:00
+updated: 2018-03-15 16:50:00
 ---
 
 ## Service Worker 有以下功能和特性：
 
-* 出于安全的考虑，必须在 HTTPS 环境下才能工作（host 为 localhost 或者 127.0.0.1 也可以）
-* 一个独立的 worker 线程，独立于当前网页进程，有自己独立的 worker context
-* 不能直接操作 DOM
-* 一旦被 install，就永远存在，除非被 uninstall
-* 需要的时候可以直接唤醒，不需要的时候自动睡眠（有效利用资源，此处有坑）
-* 可编程拦截代理请求和返回，缓存文件，缓存的文件可以被网页进程取到（包括网络离线状态）
-* 离线内容开发者可控
-* 能向客户端推送消息
-* 异步实现，内部大都是通过 Promise 实现
+1.  出于安全的考虑，必须在 HTTPS 环境下才能工作（host 为 localhost 或者 127.0.0.1 也可以）
+2.  一个独立的 worker 线程，独立于当前网页进程，有自己独立的 worker context
+3.  不能直接操作 DOM
+4.  一旦被 install，就永远存在，除非被 uninstall
+5.  需要的时候可以直接唤醒，不需要的时候自动睡眠（有效利用资源，此处有坑）
+6.  可编程拦截代理请求和返回，缓存文件，缓存的文件可以被网页进程取到（包括网络离线状态）
+7.  离线内容开发者可控
+8.  能向客户端推送消息
+9.  异步实现，内部大都是通过 Promise 实现
 
 <!-- more -->
 
 ## 基础知识
 
-1.  [Cache API](https://developer.mozilla.org/zh-CN/docs/Web/API/Cache)，Cache API 是 Service Worker 上的一个全局对象，可以用来缓存资源。
-2.  [HTML5 fetch API](https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API)（网络请求）
-3.  [Promise](https://developer.mozilla.org/zh-CN/docs/Web/javaScript/Reference/Global_Objects/Promise)
+* [Cache API](https://developer.mozilla.org/zh-CN/docs/Web/API/Cache)，Cache API 是 Service Worker 上的一个全局对象，可以用来缓存资源。
+* [HTML5 fetch API](https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API)（网络请求）
+* [Promise](https://developer.mozilla.org/zh-CN/docs/Web/javaScript/Reference/Global_Objects/Promise)
 
 ## 注册 Service Worker
 
@@ -103,20 +103,24 @@ Chrome 地址栏中输入 chrome://serviceworker-internals 可以查看 Service 
 ## 安装 Service Worker
 
 ```javascript
-// 缓存版本
-const CACHE_VERSION = 's-data-v1';
+const VERSION = '180315-01';
+const OFFLINE_CACHE = 's-offline-' + VERSION;
 // 需要缓存的离线页面
 const FILES_TO_CACHE = [
   '/',
   '/index.html',
+  '/offline.html',
   '/manifest.json',
-  '/fancybox/jquery.fancybox.css',
   '/css/style.css',
-  '/css/images/banner.jpg',
-  '/css/fonts/fontawesome-webfont.woff',
+  '/fancybox/jquery.fancybox.css',
   'https://cdn.bootcss.com/jquery/2.0.3/jquery.min.js',
   '/fancybox/jquery.fancybox.pack.js',
-  '/js/script.js'
+  '/js/script.js',
+  '/images/favicon.ico',
+  '/images/avatar.jpg',
+  '/images/offline-image.png',
+  '/css/images/banner.jpg',
+  '/css/fonts/fontawesome-webfont.woff'
 ];
 
 self.addEventListener('install', function(event) {
@@ -124,9 +128,9 @@ self.addEventListener('install', function(event) {
 
   event.waitUntil(
     caches
-      .open(CACHE_VERSION)
+      .open(OFFLINE_CACHE)
       .then(cache => cache.addAll(FILES_TO_CACHE))
-      .then(() => console.log('[SW]:', '离线资源缓存完毕，当前版本:', CACHE_VERSION))
+      .then(() => console.log('[SW]:', '离线资源缓存完毕，当前版本:', OFFLINE_CACHE))
       .then(() => self.skipWaiting())
   );
 });

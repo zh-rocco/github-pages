@@ -5,7 +5,7 @@ categories:
   - Git
 comments: true
 date: 2017-05-31 15:20:00
-updated: 2018-03-02 16:50:00
+updated: 2018-03-15 16:50:00
 ---
 
 ## 生成 SSH keys
@@ -19,6 +19,18 @@ ssh-keygen -t rsa -C "rocco.mormont@gmail.com"
 ```
 
 <!-- more -->
+
+## 查看/修改用户信息
+
+```bash
+# 查看
+git config user.name
+git config user.email
+
+#修改
+git config --global user.name "rocco"
+git config --global user.email "rocco.mormont@gmail.com"
+```
 
 ## 查看/创建/切换 分支
 

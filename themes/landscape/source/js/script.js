@@ -161,40 +161,57 @@
 
   /* banner动画 */
   (function() {
-    var header = document.getElementById('header'),
-      bannerBg = document.getElementsByClassName('banner-bg')[0];
+    var elementStyle = document.createElement('div').style;
 
+    var vendor = (function() {
+      var transformNames = {
+        webkit: 'webkitTransform',
+        Moz: 'MozTransform',
+        O: 'OTransform',
+        ms: 'msTransform',
+        standard: 'transform'
+      };
+
+      for (var key in transformNames) {
+        if (elementStyle[transformNames[key]] !== undefined) {
+          return key;
+        }
+      }
+    })();
+
+    var prefixStyle = function(style) {
+      if (!vendor) {
+        return new Error('bad browser.');
+      } else if (vendor === 'standard') {
+        return style;
+      } else {
+        return vendor + style.charAt(0).toUpperCase() + style.substr(1);
+      }
+    };
+
+    var $banner = $('#banner');
     var enterX, enterY, deltaX, deltaY;
+    var transition = prefixStyle('transition');
+    var transform = prefixStyle('transform');
 
-    header.addEventListener(
-      'mouseenter',
-      function(e) {
-        bannerBg.style.transform = 'scale(1.05)';
+    $('#header')
+      .on('mouseenter', function(e) {
+        $banner.css(transform, 'scale(1.05)');
         enterX = e.clientX;
         enterY = e.clientY;
-      },
-      false
-    );
-
-    header.addEventListener(
-      'mouseout',
-      function() {
-        bannerBg.setAttribute('style', '');
-      },
-      false
-    );
-
-    header.addEventListener(
-      'mousemove',
-      function(e) {
+      })
+      .on('mouseout', function() {
+        $banner.attr('style', '');
+      })
+      .on('mousemove', function(e) {
         deltaX = e.clientX - enterX;
         deltaY = e.clientY - enterY;
-        var x = Math.round(deltaX / 40),
-          y = Math.round(deltaY / 40);
-        bannerBg.style.transition = 'transform 500ms linear';
-        bannerBg.style.transform = 'scale(1.05) translate(' + -x + 'px, ' + -y + 'px)';
-      },
-      false
-    );
+        var x = Math.round(deltaX / 40);
+        var y = Math.round(deltaY / 40);
+        $banner.css({
+          transition: 'transform 500ms linear',
+          transform: 'scale(1.05) translate(' + -x + 'px, ' + -y + 'px)'
+        });
+      });
   })();
 })(jQuery);

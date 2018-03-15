@@ -5,6 +5,7 @@
   @extend $block
   overflow: hidden
 
+
 .article-meta
   clearfix()
 
@@ -31,7 +32,7 @@
 .article-title
   text-decoration: none
   font-size: 2em
-  font-weight: bold
+  font-weight: 700
   color: color-default
   line-height: line-height-title
   transition: color 0.2s
@@ -47,7 +48,7 @@
     line-height: line-height
     margin: line-height 0
   h1, h2, h3, h4, h5, h6
-    font-weight: bold
+    font-weight: normal
   h1, h2, h3, h4, h5, h6
     line-height: line-height-title
     margin: line-height-title 0
@@ -79,14 +80,16 @@
     border-bottom: 1px solid color-border
     padding: 10px 0
   blockquote
-    font-family: font-serif
-    font-size: 1.4em
-    margin: line-height 20px
-    text-align: center
+    padding-left: 10px
+    border-left: 4px solid #6a737d
+    font-family: font-sans
+    font-size: 1em
+    color: #6a737d
     footer
       font-size: font-size
       margin: line-height 0
       font-family: font-sans
+      color: color-grey
       cite
         &:before
           content: "—"
@@ -125,7 +128,7 @@
 .article-more-link a
   display: inline-block
   height: 1em
-  line-height: 1.2em
+  line-height: 1em
   padding: 6px 15px
   border-radius: 15px
   background: color-background
@@ -178,6 +181,7 @@
 #article-nav
   clearfix()
   position: relative
+  user-select: none
   @media mq-normal
     margin: block-margin 0
     &:before

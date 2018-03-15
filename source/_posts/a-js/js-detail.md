@@ -4,8 +4,8 @@ title: 细说 JavaScript
 categories:
   - JavaScript
 comments: true
-date: 2017-05-02 22:50:00
-updated: 2018-03-02 16:50:00
+date: 2017-11-02 22:50:00
+updated: 2018-03-15 16:50:00
 ---
 
 ## 1. new 操作符
@@ -140,7 +140,7 @@ aaa.c(); // 3
 function closure() {
   var oDiv = document.getElementById('oDiv'); // oDiv 用完之后一直驻留在内存中
   oDiv.onclick = function() {
-    alert('oDiv.innerHTML'); // 这里用 oDiv 导致内存泄露
+    alert(oDiv.innerHTML); // 这里用 oDiv 导致内存泄露
   };
 }
 closure();
