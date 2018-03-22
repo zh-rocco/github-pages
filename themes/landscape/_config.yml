@@ -16,7 +16,7 @@ widgets:
 #- tag
 - tagcloud
 - recent_posts
-#- friends
+- friends
 #- archive
 
 friends:
