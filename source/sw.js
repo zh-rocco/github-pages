@@ -1,6 +1,6 @@
 'use strict';
 
-const VERSION = '180322-01';
+const VERSION = '180326-01';
 const OFFLINE_CACHE = 's-offline-' + VERSION;
 const DATA_CACHE = 's-data-' + VERSION;
 
