@@ -7,7 +7,7 @@ categories:
   - MySQL
 comments: true
 date: 2018-01-01 22:30:00
-updated: 2018-03-02 16:50:00
+updated: 2018-03-27 21:50:00
 ---
 
 ## 安装 MySQL
@@ -42,7 +42,7 @@ updated: 2018-03-02 16:50:00
     * 命令行输入 `mysql -u root -p`，键入密码，以 root 身份进入 mysql 管理界面；
     * 进入 mysql 管理界面后（出现 `mysql>` 标识）键入 `SET PASSWORD FOR "root"@"localhost" = PASSWORD("123456");`（注意不要漏掉最后的 `;`）；
     * 命令行输入 `flush privileges;` 刷新权限；
-    * 命令行输入 `quite` 推出 mysql 管理界面；
+    * 命令行输入 `clear` 清屏，然后输入 `quit` 退出 mysql 管理界面；
 9.  修改 mysql.ini 文件删除最后一句 `skip-grant-tables`；
 10. 命令行输入 `net stop mysql` 停止 mysql 服务；
 11. 命令行输入 `net start mysql` 重启 mysql 服务；
