@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Service Worker
+title: Service Worker - PWA
 tags:
   - service worker
 categories:
@@ -130,7 +130,9 @@ self.addEventListener('install', function(event) {
     caches
       .open(OFFLINE_CACHE)
       .then(cache => cache.addAll(FILES_TO_CACHE))
-      .then(() => console.log('[SW]:', '离线资源缓存完毕，当前版本:', OFFLINE_CACHE))
+      .then(() =>
+        console.log('[SW]:', '离线资源缓存完毕，当前版本:', OFFLINE_CACHE)
+      )
       .then(() => self.skipWaiting())
   );
 });
