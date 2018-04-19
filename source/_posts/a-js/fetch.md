@@ -5,7 +5,6 @@ tags:
   - fetch
 categories:
   - JavaScript
-  - PWA
 comments: true
 date: 2018-04-17 21:50:00
 updated: 2018-04-17 21:50:00
