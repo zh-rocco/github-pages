@@ -3,6 +3,7 @@ layout: post
 title: 应用清单 - PWA
 tags:
   - manifest
+  - pwa
 categories:
   - PWA
 comments: true
@@ -178,3 +179,4 @@ window.addEventListener('beforeinstallprompt', function(event) {
 ## 参考
 
 * [网络应用清单 - Google](https://developers.google.com/web/fundamentals/web-app-manifest/)
+* [Progressive Web Apps (PWA) 中文版](http://sangka-z.com/PWA-Book-CN/)

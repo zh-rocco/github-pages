@@ -3,6 +3,7 @@ layout: post
 title: Service Worker - PWA
 tags:
   - service worker
+  - pwa
 categories:
   - PWA
 comments: true

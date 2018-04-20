@@ -3,6 +3,7 @@ layout: post
 title: Fetch API
 tags:
   - fetch
+  - pwa
 categories:
   - JavaScript
 comments: true
@@ -86,5 +87,3 @@ fetch('/some/url', {
 
 * [了解 Fetch API](https://aotu.io/notes/2017/04/10/fetch-API/index.html)
 * [WorkerOrGlobalScope.fetch() - MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/WindowOrWorkerGlobalScope/fetch)
-
-<!-- more -->
