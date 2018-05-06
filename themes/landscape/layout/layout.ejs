@@ -4,6 +4,10 @@
 <%- partial('_partial/head') %>
 
 <body>
+  <div class="share-avatar">
+    <img class="avatar" src="<%- theme.share_avatar %>" alt="头像">
+  </div>
+
   <div id="container">
     <div id="wrap">
       <%- partial('_partial/header', null, {cache: !config.relative_link}) %>
