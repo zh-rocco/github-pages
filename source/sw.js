@@ -1,6 +1,6 @@
 'use strict';
 
-const VERSION = '180506-01';
+const VERSION = '180508-01';
 const OFFLINE_CACHE = 's-offline-' + VERSION;
 const DATA_CACHE = 's-data-' + VERSION;
 
@@ -11,19 +11,23 @@ const FILES_TO_CACHE = [
   '/offline.html',
   '/manifest.json',
   '/css/style.css',
-  '/fancybox/jquery.fancybox.css',
-  'https://cdn.bootcss.com/jquery/2.0.3/jquery.min.js',
-  '/fancybox/jquery.fancybox.pack.js',
+  // '/fancybox/jquery.fancybox.css',
+  // 'https://cdn.bootcss.com/jquery/2.0.3/jquery.min.js',
+  // '/fancybox/jquery.fancybox.pack.js',
   '/js/script.js',
   '/images/favicon.ico',
   '/images/avatar.jpg',
   '/images/offline-image.png',
   '/css/images/banner.jpg',
+  '/css/images/banner-phone.jpg',
   '/css/fonts/fontawesome-webfont.woff'
 ];
 
 // 不需要缓存的地址
-const IGNORE_FILES = [/https?:\/\/hm.baidu.com\//, /https?:\/\/www.google-analytics.com\//];
+const IGNORE_FILES = [
+  /https?:\/\/hm.baidu.com\//,
+  /https?:\/\/www.google-analytics.com\//
+];
 
 /**
  * 通用函数
@@ -31,7 +35,10 @@ const IGNORE_FILES = [/https?:\/\/hm.baidu.com\//, /https?:\/\/www.google-analyt
 
 // 不需要缓存的请求
 function shouldAlwaysFetch(request) {
-  return request.method !== 'GET' || IGNORE_FILES.some(regex => request.url.match(regex));
+  return (
+    request.method !== 'GET' ||
+    IGNORE_FILES.some(regex => request.url.match(regex))
+  );
 }
 
 // 需要缓存的请求，例如：HTML 页面
@@ -50,7 +57,9 @@ function onInstall(event) {
     caches
       .open(OFFLINE_CACHE)
       .then(cache => cache.addAll(FILES_TO_CACHE))
-      .then(() => console.log('[SW]:', '离线资源缓存完毕，当前版本:', OFFLINE_CACHE))
+      .then(() =>
+        console.log('[SW]:', '离线资源缓存完毕，当前版本:', OFFLINE_CACHE)
+      )
       .then(() => self.skipWaiting())
   );
 }
@@ -71,7 +80,9 @@ function offlineResponse(request) {
 
 // 从缓存读取或使用离线资源替代
 function cachedOrOffline(request) {
-  return caches.match(request).then(response => response || offlineResponse(request));
+  return caches
+    .match(request)
+    .then(response => response || offlineResponse(request));
 }
 
 // 从网络请求，并将请求成功的资源缓存
@@ -91,8 +102,16 @@ function networkedAndCache(request) {
 // 优先从 cache 读取，读取失败则从网络请求并缓存。网络请求也失败，则使用离线资源替代
 function cachedOrNetworked(request) {
   return caches.match(request).then(response => {
-    console.log('[SW]:', response ? '读取缓存' : '未匹配缓存', request.method, request.url);
-    return response || networkedAndCache(request).catch(() => offlineResponse(request));
+    console.log(
+      '[SW]:',
+      response ? '读取缓存' : '未匹配缓存',
+      request.method,
+      request.url
+    );
+    return (
+      response ||
+      networkedAndCache(request).catch(() => offlineResponse(request))
+    );
   });
 }
 
@@ -120,7 +139,9 @@ function onFetch(event) {
   // 应当从网络请求并缓存的资源
   // 如果请求失败，则尝试从缓存读取，读取失败则使用离线资源替代
   if (shouldFetchAndCache(request)) {
-    event.respondWith(networkedAndCache(request).catch(() => cachedOrOffline(request)));
+    event.respondWith(
+      networkedAndCache(request).catch(() => cachedOrOffline(request))
+    );
     return;
   }
 

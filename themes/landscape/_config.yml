@@ -7,7 +7,7 @@ rss: /atom.xml
 
 # Content
 excerpt_link: 查看更多
-fancybox: true
+fancybox: false
 
 # Sidebar
 sidebar: right
