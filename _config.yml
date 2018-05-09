@@ -1,5 +1,5 @@
 # Site
-title: Rocco's Blog.
+title: Rocco's Blog
 subtitle: 简简简简单
 description: JavaScript, ES6, CSS3, 前端笔记
 author: Rocco
@@ -7,7 +7,7 @@ language: zh-CN
 timezone: Asia/Shanghai
 
 # URL
-url: https://singple.com
+url: https://zh-rocco.github.io/
 github: https://github.com/zh-rocco
 root: /
 # permalink: :year/:month/:day/:title/
