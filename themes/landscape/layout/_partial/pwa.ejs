@@ -7,12 +7,12 @@
    */
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker
-      .register('sw.js', {scope: '/'})
-      .then(function (reg) {
-        console.log('Service Worker 注册成功，域名: ', reg.scope);
+      .register('sw.js', { scope: '/' })
+      .then(registration => {
+        console.log('Service Worker 注册成功，域名: ', registration.scope);
       })
-      .catch(function (err) {
-        console.log('Service Worker 注册失败: ', err);
+      .catch(error => {
+        console.log('Service Worker 注册失败: ', error);
       });
   }
 </script>
