@@ -1,6 +1,6 @@
 'use strict';
 
-const VERSION = '180509-02';
+const VERSION = '180516-01';
 const OFFLINE_CACHE = 's-offline-' + VERSION;
 const DATA_CACHE = 's-data-' + VERSION;
 
@@ -161,7 +161,7 @@ function removeOldCache() {
         .filter(key => key !== OFFLINE_CACHE && key !== DATA_CACHE) // 过滤不需要删除的资源
         .map(key => {
           console.log('[SW]:', '移除过时缓存:', key);
-          caches.delete(key);
+          return caches.delete(key);
         }) // 删除旧版本资源，返回为 Promise 对象
     )
   );
