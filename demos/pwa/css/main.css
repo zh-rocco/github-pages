@@ -1,0 +1,41 @@
+body {
+  margin: 0;
+  user-select: none;
+}
+
+h1 {
+  text-align: center;
+}
+
+ul {
+  margin: 0;
+  padding: 5px;
+  list-style: none;
+  column-count: 2;
+  column-width: 50%;
+  column-gap: 5px;
+}
+
+li:nth-of-type(n + 2) {
+  margin-top: 5px;
+}
+
+img {
+  display: block;
+  width: 100%;
+  -webkit-touch-callout: none;
+}
+
+.lazyload,
+.lazyloading {
+  opacity: 0;
+}
+.lazyloaded {
+  opacity: 1;
+  transition: opacity 1.2s;
+}
+
+.offline-image {
+  width: 196px;
+  margin: 100px auto;
+}
