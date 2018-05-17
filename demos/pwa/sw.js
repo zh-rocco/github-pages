@@ -8,10 +8,12 @@ const DATA_CACHE = 's-data-' + VERSION;
 const FILES_TO_CACHE = [
   '/index.html',
   '/offline.html',
+  '/manifest.json',
   '/css/main.css',
   '/js/lazysizes.min.js',
   '/js/main.js',
   '/img/favicon.ico',
+  '/img/offline.png',
   '/img/offline-image.png'
 ];
 
