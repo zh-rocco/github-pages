@@ -1,5 +1,10 @@
 body {
   margin: 0;
+  font-family: '-apple-system', 'Helvetica Neue', 'Roboto', 'Segoe UI',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-text-size-adjust: 100%;
   user-select: none;
 }
 
@@ -12,8 +17,12 @@ ul {
   padding: 5px;
   list-style: none;
   column-count: 2;
-  column-width: 50%;
   column-gap: 5px;
+}
+
+li {
+  border-radius: 2px;
+  overflow: hidden;
 }
 
 li:nth-of-type(n + 2) {
@@ -26,16 +35,24 @@ img {
   -webkit-touch-callout: none;
 }
 
-.lazyload,
-.lazyloading {
-  opacity: 0;
+.wrap,
+.content {
+  overflow: hidden;
 }
-.lazyloaded {
-  opacity: 1;
-  transition: opacity 1.2s;
+
+.content {
+  padding: 5px;
 }
 
 .offline-image {
   width: 196px;
-  margin: 100px auto;
+  margin: 80px auto 0;
+}
+
+.offline-text {
+  text-align: center;
+}
+
+.dragon-image {
+  width: 100%;
 }

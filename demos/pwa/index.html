@@ -5,67 +5,74 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="manifest" href="/manifest.json">
+  <link rel="manifest" href="./manifest.json">
   <meta name="theme-color" content="#3e464c">
   <link rel="shortcut icon" href="./img/favicon.ico">
-  <title>DEMO - PWA</title>
+  <title>Game of Thrones</title>
   <link rel="stylesheet" href="./css/main.css">
 </head>
 
 <body>
-  <div class="wrap">
+  <div class="wrap index">
     <h1 class="title">Game of Thrones</h1>
     <ul class="pic-container">
       <li class="pic-item">
-        <img class="lazyload" data-src="./img/pic-01.jpg" alt="pic-01">
+        <img class="image" src="./img/pic-01.jpg" alt="pic-01">
       </li>
       <li class="pic-item">
-        <img class="lazyload" data-src="./img/pic-02.jpg" alt="pic-02">
+        <img class="image" src="./img/pic-02.jpg" alt="pic-02">
       </li>
       <li class="pic-item">
-        <img class="lazyload" data-src="./img/pic-03.jpg" alt="pic-03">
+        <img class="image" src="./img/pic-03.jpg" alt="pic-03">
       </li>
       <li class="pic-item">
-        <img class="lazyload" data-src="./img/pic-04.jpg" alt="pic-04">
+        <img class="image" src="./img/pic-04.jpg" alt="pic-04">
       </li>
       <li class="pic-item">
-        <img class="lazyload" data-src="./img/pic-05.jpg" alt="pic-05">
+        <img class="image" src="./img/pic-05.jpg" alt="pic-05">
       </li>
       <li class="pic-item">
-        <img class="lazyload" data-src="./img/pic-06.jpg" alt="pic-06">
+        <img class="image" src="./img/pic-06.jpg" alt="pic-06">
       </li>
       <li class="pic-item">
-        <img class="lazyload" data-src="./img/pic-07.jpg" alt="pic-07">
+        <img class="image" src="./img/pic-07.jpg" alt="pic-07">
       </li>
       <li class="pic-item">
-        <img class="lazyload" data-src="./img/pic-08.jpg" alt="pic-08">
+        <img class="image" src="./img/pic-08.jpg" alt="pic-08">
       </li>
       <li class="pic-item">
-        <img class="lazyload" data-src="./img/pic-09.jpg" alt="pic-09">
+        <img class="image" src="./img/pic-09.jpg" alt="pic-09">
       </li>
       <li class="pic-item">
-        <img class="lazyload" data-src="./img/pic-10.jpg" alt="pic-10">
+        <img class="image" src="./img/pic-10.jpg" alt="pic-10">
       </li>
       <li class="pic-item">
-        <img class="lazyload" data-src="./img/pic-11.jpg" alt="pic-11">
+        <img class="image" src="./img/pic-11.jpg" alt="pic-11">
       </li>
     </ul>
+
+    <p class="content">
+      <a href="./dragon.html">test offline</a>
+    </p>
   </div>
 
-  <script src="./js/lazysizes.min.js"></script>
   <script src="./js/main.js"></script>
 
   <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker
-        .register('sw.js', { scope: '/' })
-        .then(registration => {
-          console.log('Service Worker 注册成功，域名: ', registration.scope);
-        })
-        .catch(error => {
-          console.log('Service Worker 注册失败: ', error);
-        });
-    }
+    (function () {
+      window.addEventListener('DOMContentLoaded', function () {
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker
+            .register('sw.js', { scope: '/' })
+            .then(registration => {
+              console.log('Service Worker 注册成功，域名: ', registration.scope);
+            })
+            .catch(error => {
+              console.log('Service Worker 注册失败: ', error);
+            });
+        }
+      })
+    })()
   </script>
 </body>
 

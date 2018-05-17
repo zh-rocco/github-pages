@@ -1,20 +1,31 @@
 'use strict';
 
-const VERSION = '001';
+const VERSION = '008';
 const OFFLINE_CACHE = 's-offline-' + VERSION;
 const DATA_CACHE = 's-data-' + VERSION;
 
 // 需要缓存的离线页面
 const FILES_TO_CACHE = [
+  '/',
   '/index.html',
   '/offline.html',
   '/manifest.json',
   '/css/main.css',
-  '/js/lazysizes.min.js',
   '/js/main.js',
   '/img/favicon.ico',
+  '/img/default.png',
   '/img/offline.png',
-  '/img/offline-image.png'
+  '/img/pic-01.jpg',
+  '/img/pic-02.jpg',
+  '/img/pic-03.jpg',
+  '/img/pic-04.jpg',
+  '/img/pic-05.jpg',
+  '/img/pic-06.jpg',
+  '/img/pic-07.jpg',
+  '/img/pic-08.jpg',
+  '/img/pic-09.jpg',
+  '/img/pic-10.jpg',
+  '/img/pic-11.jpg'
 ];
 
 // 不需要缓存的地址
