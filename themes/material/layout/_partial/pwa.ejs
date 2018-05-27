@@ -1,0 +1,18 @@
+<script>
+  /*
+   * 注册 Service Worker
+   * 附加：
+   * Chrome 输入 chrome://inspect/#service-workers 可以查看 Service Worker 是否已启用
+   * Chrome 输入 chrome://serviceworker-internals 可以查看 Service Worker 详情
+   */
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker
+      .register('/service-worker.js', { scope: '/' })
+      .then(registration => {
+        console.log('Service Worker 注册成功，域名: ', registration.scope);
+      })
+      .catch(error => {
+        console.log('Service Worker 注册失败: ', error);
+      });
+  }
+</script>
